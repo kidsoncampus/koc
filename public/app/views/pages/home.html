@@ -1,0 +1,23 @@
+<div>
+<div class="jumbotron">
+	<div class="container">
+	  <h1>Kids On Campus</h1>
+	  <h2 ng-if="main.loggedIn">Welcome {{main.user.name}}</h2>
+	  <p>Kids On Campus Preschool</p>
+	  <p>
+	  	<a ng-if="!main.loggedIn" class="btn btn-success btn-lg" href="#/login" role="button">Login</a>
+	  	<a ng-if="!main.loggedIn" class="btn btn-success btn-lg" href="#/signup" role="button">Sign Up</a>
+	  	<a ng-if="main.loggedIn" class="btn btn-success btn-lg" ng-click="main.doLogout()" role="button">Logout</a>
+	  </p>
+    </div>
+</div>
+
+<div ng-controller="userController as uc" class="container">
+	
+
+	<h2>Registered Users</h2>
+	<ul>
+		<li ng-repeat="u in uc.users">{{u.name}}</li>
+	</ul>
+</div>
+</div>
