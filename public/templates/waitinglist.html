@@ -1,0 +1,199 @@
+
+
+
+    <div class="container">
+        <div class="col-sm-8 col-sm-offset-2" >
+
+            <!-- page header -->
+            <div class="page-header">
+                <h2>KIDS ON CAMPUS Waitinglist Form</h>
+            </div>
+            <form name="userForm" ng-submit="submitForm()" novalidate>
+                <!--today's date-->
+                <div class="form-group" ng-class="{ 'has-error' : userForm.date.$invalid && (userForm.date.$dirty || submitted)}">
+
+                    <label>Today's Date</label>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <p class="input-group">
+                          <input type="text" id="date" name="date" class="form-control" uib-datepicker-popup ng-model="dt" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                          <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+                          </span>
+                        </p>
+                      </div> 
+                    </div>
+                </div>
+                
+                <!--name of child-->
+                <div class="form-group" ng-class="{ 'has-error' : userForm.chname.$invalid && (userForm.chname.$dirty || submitted)}">
+                    <label>Name of Child</label>
+                    <input type="text" name="chname" class="form-control" ng-model="user.chname" placeholder="" ng-required="true">
+                    <p ng-show="userForm.chname.$error.required && (userForm.chname.$dirty || submitted)" class="help-block">Child Name is required.</p>
+                    <div class="form-group" ng-class="{ 'has-error' : userForm.chname.$invalid && (userForm.chname.$dirty || submitted)}">
+                    <input type="radio" name="gender"> Boy
+                    <input type="radio" name="gender"> Girl
+                    <input type="radio" name="gender" checked="checked"> Unknown
+                    </div>
+                </div>
+
+                <!--birthday-->
+                <div class="form-group" ng-class="{ 'has-error' : userForm.b_date.$invalid && (userForm.b_date.$dirty || submitted)}">
+
+                    <label>Child's Date of Birth</label>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <p class="input-group">
+                          <input type="text" id="b_date" name="b_date" class="form-control" uib-datepicker-popup ng-model="b_dt" is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                          <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+                          </span>
+                        </p>
+                      </div> 
+                    </div>
+                </div>
+                
+                <!--application type-->
+                <div class="form-group" ng-class="{ 'has-error' : userForm.application.$invalid  && (userForm.application.$dirty || submitted)}">
+                    <label>Application Type</label>
+                    <select name="application" class="form-control"
+                            ng-model="user.application"
+                            ng-options="application.applicationId as application.Name for application in applicationList"
+                            ng-required="true">
+                        <option value=''>Select</option>
+                    </select>
+                    <p ng-show="userForm.application.$error.required  && (userForm.application.$dirty || submitted)" class="help-block">Selection is required.
+                    </p>
+                </div>
+                
+
+
+                <!--contact-->
+
+                <label>SCU Affiliated Guardian</label>
+                <!-- name -->
+                <div class="form-group" ng-class="{ 'has-error' : userForm.g_name.$invalid && (userForm.g_name.$dirty || submitted)}">
+                    <label class="control-label">Name</label>
+                    <input type="text" id="g_name" name="g_name" class="form-control" ng-model="user.g_name" placeholder="" ng-required="true">
+                    <span ng-show="userForm.g_name.$error.required && (userForm.g_name.$dirty || submitted)" class="help-block">Guardian's name is required.</span>
+                </div>
+
+                <!-- contactno -->
+                <div class="form-group" ng-class="{ 'has-error' : userForm.g_contactno.$invalid  && (userForm.g_contactno.$dirty || submitted) }">
+                    <label class="control-label">Phone</label> 
+                    <input type="text" id="g_contactno" name="g_contactno" class="form-control" ng-model="user.g_contactno" placeholder="" ng-pattern="
+                    myRegex" ng-required="true" maxlength="12">
+                    <span ng-show="userForm.g_contactno.$error.required && (userForm.g_contactno.$dirty || submitted)" class="help-block">Contactno is required.</span>
+                    <span ng-show="userForm.g_contactno.$error.pattern  && (userForm.g_contactno.$dirty || submitted)" class="help-block">Enter a valid contactno (xxx-xxx-xxxx).</span>
+                </div>
+
+                <!-- email -->
+                <div class="form-group" ng-class="{ 'has-error' : userForm.g_email.$invalid && (userForm.g_email.$dirty || submitted)}">
+                    <label class="control-label">Email</label>
+                    <input type="email" id="g_email" name="g_email" class="form-control" ng-model="user.g_email" placeholder="" ng-required="true">
+                    <span ng-show="userForm.g_email.$error.required && (userForm.g_email.$dirty || submitted)" class="help-block">Email is required.</span>
+                    <span ng-show="userForm.g_email.$error.email && (userForm.g_email.$dirty || submitted)" class="help-block">Enter a valid email.</span>
+                </div>
+                
+                <!--address-->
+                <div class="form-group" ng-class="{ 'has-error' : userForm.g_address.$invalid && (userForm.g_address.$dirty || submitted)}">
+                    <label>Address</label>
+                    <textarea placeholder="" rows="3" id="g_address" name="g_address" class="form-control" ng-model="user.g_address" placeholder="" ng-required="true"></textarea>
+                    <span ng-show="userForm.g_address.$error.required && (userForm.g_address.$dirty || submitted)" class="help-block">Address is required.</span>
+                </div>
+
+                <!--emergency contact-->
+                <label>Emergency Contact</label>
+                <!-- e_name -->
+                <div class="form-group" ng-class="{ 'has-error' : userForm.e_name.$invalid && (userForm.e_name.$dirty || submitted)}">
+                    <label class="control-label">Name</label>
+                    <input type="text" id="e_name" name="e_name" class="form-control" ng-model="user.e_name" placeholder="" ng-required="true">
+                    <span ng-show="userForm.e_name.$error.required && (userForm.e_name.$dirty || submitted)" class="help-block">Name is required.</span>
+                </div>
+
+                <!-- e_contactno -->
+                <div class="form-group" ng-class="{ 'has-error' : userForm.e_contactno.$invalid  && (userForm.e_contactno.$dirty || submitted) }">
+                    <label class="control-label">Phone</label>
+                    <input type="text" id="e_contactno" name="e_contactno" class="form-control" ng-model="user.e_contactno" placeholder="" ng-required="true" ng-pattern="myRegex" maxlength="12">
+                    <span ng-show="userForm.e_contactno.$error.required && (userForm.e_contactno.$dirty || submitted)" class="help-block">Contactno is required.</span>
+                    <span ng-show="userForm.e_contactno.$error.pattern && (userForm.e_contactno.$dirty || submitted)" class="help-block">Enter a valid contactno (xxx-xxx-xxxx).</span>
+                </div>
+
+                <!-- e_email -->
+                <div class="form-group" ng-class="{ 'has-error' : userForm.e_email.$invalid && (userForm.e_email.$dirty || submitted)}">
+                    <label class="control-label">Email</label>
+                    <input type="email" id="e_email" name="e_email" class="form-control" ng-model="user.e_email" placeholder="" ng-required="true">
+                    <span ng-show="userForm.e_email.$error.required && (userForm.e_email.$dirty || submitted)" class="help-block">Email is required.</span>
+                </div>
+                
+                <!--e_address-->
+                <div class="form-group" ng-class="{ 'has-error' : userForm.e_address.$invalid && (userForm.e_address.$dirty || submitted)}">
+                    <label class="control-label">Address</label>
+                    <textarea placeholder="" rows="3" id="e_address" name="e_address" class="form-control" ng-model="user.e_address" placeholder="" ng-required="true"></textarea>
+                    <span ng-show="userForm.e_address.$error.required && (userForm.e_address.$dirty || submitted)" class="help-block">Address is required.</span>
+                </div>
+                
+
+                <!--perferred date-->
+                <div class="form-group" ng-class="{ 'has-error' : userForm.p_date.$invalid && (userForm.p_date.$dirty || submitted)}">
+
+                    <label>Perferred Start Date </label>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="input-group">
+                          <input type="text" id="p_date" name="p_date" class="form-control" uib-datepicker-popup ng-model="p_dt" is-open="popup3.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                          <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="open3()"><i class="glyphicon glyphicon-calendar"></i></button>
+                          </span>
+                        </div>
+                      </div> 
+                    </div>
+                </div>
+                
+                <!--priority-->
+                <div class="form-group" ng-class="{ 'has-error' : userForm.level1.$invalid  && (userForm.level1.$dirty || submitted)}">
+                    <label>Faimly's SCU affiliation (Listed in Order of Admission Priority)</label>
+                    
+                    <select id="level1" name="level1" class="form-control"
+                            ng-model="user.level1"
+                            ng-options="level1.level1Id as level1.Name for level1 in level1List"
+                            ng-required="true">
+                        <option value=''>Select</option>
+                    </select>
+                    <span ng-show="userForm.level1.$error.required  && (userForm.level1.$dirty || submitted)" class="help-block">Selection is required.</span>
+                </div>
+
+                
+                <div class="form-group" ng-class="{ 'has-error' : userForm.level2.$invalid  && (userForm.level2.$dirty || submitted)}">
+                    
+                    <select id="level2" name="level2" class="form-control"
+                            ng-model="user.level2"
+                            ng-options="level2.level2Id as level2.Name for level2 in level2List"
+                            ng-required="true">
+                        <option value=''>Select</option>
+                    </select>
+                    <span ng-show="userForm.level2.$error.required  && (userForm.level2.$dirty || submitted)" class="help-block">Selection is required.</span>
+                </div>
+
+                <div id="level3" class="form-group" ng-class="{ 'has-error' : userForm.level3.$invalid  && (userForm.level3.$dirty || submitted)}">
+               
+                    <select id="level3" name="level3" class="form-control"
+                            ng-model="user.level3"
+                            ng-options="level3.level3Id as level3.Name for level3 in level3List"
+                            ng-required="true"
+                            onmousedown="if(this.options.length>8){this.size=8;}" 
+                            onchange='this.size=0;' onblur="this.size=0;"
+                            >
+                        <option value=''>Select</option>
+                    </select>
+                    <span ng-show="userForm.level3.$error.required  && (userForm.level3.$dirty || submitted)" class="help-block">Selection is required.</span>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+            <br></br>
+        </div>
+    </div>
+
+
+

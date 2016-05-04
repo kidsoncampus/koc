@@ -1,32 +1,18 @@
 var mongoose = require('mongoose');
-var bcrypt = require('bcrypt-nodejs');
 
+// create a schema
 var Schema = mongoose.Schema;
 
-var userSchema = new Schema({
-	name: String,
-	username: {type: String, required: true, index: {unique: true}},
-	password: {type: String, required: true, select: false}
+var UserSchema = new Schema({
+	email: {type:String,unique:true},
+	password: String,
+	fName:String,
+	lName:String,
+	phone:Number,
+	address:String
 });
 
-userSchema.pre('save', function(next){
-	var user = this;
-
-	if(!user.isModified('password')) return next();
-
-	bcrypt.hash(user.password, null, null, function(err, hash){
-
-		if(err) return next(err);
-
-		user.password = hash;
-		next();
-	});
-});
-
-userSchema.methods.comparePassword = function(password){
-
-	var user = this;
-	return bcrypt.compareSync(password, user.password);
-};
-
-module.exports = mongoose.model('User', userSchema);
+// create a model using it
+var User = mongoose.model('User', UserSchema);
+// make this available to our users in our Node applications
+module.exports = User;

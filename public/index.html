@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" ng-app = "kocApp">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Kids On Campus Preschool</title>
+
+	<link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bower_components/bootstrap/font-awesome/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="bower_components/font-awesome.min.css" rel="stylesheet">
+    <link href="bower_components/angular-bootstrap/ui-bootstrap-csp.css">
+    <link href="css/bootstrap-social.css" rel="stylesheet">
+    <link href="styles/index.css" rel="stylesheet">
+
+</head>
+<body style="background:url(images/bg1.png); background-size: cover;background-attachment: fixed;">
+	<div class="container">	
+		<div class="row">
+			<div class="col-xs-12 col-sm-3 col-md-3 col-lg-4" >
+				<a  href="#/homepage" src="#" ><img src="images/logo.png" alt="logo" id="logo" class="img-responsive"></a>
+			</div>
+			<div class="col-xs-12 col-sm-8 col-md-8 col-lg-6 col-sm-offset-1 col-md-offset-1 col-lg-offset-2" id="mynav">
+				<nav class="navbar" role="navigation">
+					<!--collapse the navigation -->
+					<div class="navbar-header navbar-inverse" id="smNav">
+						<button type="button" class="navbar-toggle collapsed" data-target="#myNavbar" data-toggle="collapse" aria-expanded="false" aria-control="navbar">
+							<span class="sr-only">Toggle Navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>	
+					</div>
+					<div id="myNavbar" class="nav navbar-collapse collapse navbar-right">
+						<ul class="nav navbar-nav">
+							<li class="active"><a href="#/homepage">Home</a></li>
+							<li><a href="#/currentParent">Current Parents</a></li>
+							<li><a href="#/donation">Donation</a></li>
+							<li><a href="#/waitinglist">Waiting List</a></li>
+						</ul>
+						<!--insert modal control into navbar-->
+						<ul class="nav navbar-nav">
+							<li><a href="#/login"><span class="glyphicon glyphicon-log-in"></span> Login/Register</a>
+							</li>
+						</ul>	
+					</div>
+				</nav>
+				<!--LoginModal
+				<div id="loginModal" class="modal fade" role="dialog" >
+					<div class="modal-dialog">
+						<div class="modal-content">
+
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<h2 class="modal-title"><span class="glyphicon glyphicon-lock"></span> Login</h2>
+							</div>
+							<div class="modal-body" ng-controller = "LoginController">
+								<form name="loginForm" novalidate>
+									<div class="form-group" ng-class = "{'has-error' : loginForm.email.$invalid && !loginForm.email.$pristine}">
+										<label for="email"><span class="glyphicon glyphicon-user"></span> Username</label>
+										<input type="email" class="form-control" name="email" id="emailid" placeholder="Please enter your email" ng-model = "userInput.email" required>
+										<span ng-show="(loginForm.email.$invalid || loginForm.email.$error.required) &&
+                                        !loginForm.email.$pristine" class="help-block">Enter a valid email address.</span>
+									</div>
+									<div class="form-group" ng-class = "{'has-error : loginForm.password.$error && !loginForm.password.$pristine'}">
+										<label for="password"><span class="plyphicon plyphicon-eye-open"></span> Password</label>
+										<input type="password" class="form-control" name="password" id="passwordid" placeholder="Please enter your password" ng-model = "userInput.password" required>
+										<span ng-show = "loginForm.password.$error.required && !loginForm.password.$pristine" class="help-block">Password is required</span>
+									</div>
+									<button type="submit" class="btn btn-success btn-block" id="submit" ng-disabled = "loginForm.$invalid"><span class="glyphicon glyphicon-off"></span> Login</button>
+								</form>
+							</div>
+							<div class="modal-footer">
+								<p>Not a member? <a href="#/templates/signup">Sign Up</a></p>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+				-->
+			</div>
+		</div>
+
+		<div class="display">
+		<!--build template-->	
+			<div ng-view> </div>
+		<!-- end build -->
+		</div>	
+	</div>
+	
+	<!-- build scripts -->
+	<script src="bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="bower_components/angular/angular.min.js"></script>
+	<script src="bower_components/angular-route/angular-route.min.js"></script>
+	<script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="scripts/kocapp.js"></script>
+	<script src="model/getUserService.js"></script>
+    <!--<script src="scripts/controllers.js"></script>-->
+	<script src="controller/signCtrl.js"></script>
+    <!-- end build -->
+</body>
+</html>

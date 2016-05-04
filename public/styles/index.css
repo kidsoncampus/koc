@@ -1,0 +1,155 @@
+/*homepage*/
+.container{
+	width: 82%;
+	margin: 0 auto;
+	margin-top: 5em;
+	margin-bottom: 5em;
+	overflow: hidden;
+}
+
+.navbar{
+	background-color: white;
+	width:100%;
+	position: relative;
+	top:2em;
+}
+
+#mynav{
+	padding:0;
+}
+#smNav{
+	color: green;
+}
+.row-border{
+	border:1em solid white;
+	overflow: hidden;
+}
+
+/*give template area white background*/
+.display{
+	background-color: white;
+}
+.row{
+	margin:0;
+	padding:0;
+}
+/*carousel picture border-top*/
+.border-top{
+	border-top:1em solid white;
+}
+
+#box1, #box2, #box3,#box4{
+	padding-bottom: 1em;
+	color:white;
+	text-align: center;
+	font-family: 'pt Sans',sans-serif;
+	
+}
+#box1, #box2, #box3,#box4 p{
+	font-size:14px;
+}
+
+#box1{
+	background-color: rgb(119,183,219);
+	border-top: 8px solid rgb(156,210,165);
+}
+#box2{
+	background-color: rgb(254,188,187);
+	border-top: 8px solid rgb(119,183,219);
+}
+#box3{
+	background-color: rgb(156,210,165);
+	border-top:8px solid rgb(253,131,131);
+}
+#box4{
+	background-color: rgb(253,131,131);
+	border-top: 8px solid rgb(254,188,187);
+}
+.boxBtn{
+	background-color: white;
+	width:80%;
+	position:relative;
+	left:10%;
+	bottom:-10px;
+}
+.boxBtn p, a{
+	color:rgb(253,131,131);
+	text-decoration: none;
+	font-weight: bold;
+	text-align: center;
+}
+.modal-header{
+	color:green;
+	padding:35px 50px;
+	text-align: center;
+}
+
+/* style for program.html */
+.subcon{
+	background-color: white;
+	width:100%;
+	margin:0 auto;
+	overflow:hidden;
+}
+.ap{
+	background-color: rgb(156,211,165);
+	width:95%;
+	margin:0 auto;
+}
+.ap h3{
+	font-family:'PT Sans', sans-serif;
+	font-weight: bold;
+	color:white;
+	text-align: center;
+	font-size: 30px;
+	padding:10px;
+	margin:22px;
+}
+
+.ap p,ol{
+	font-family:'PT Sans', sans-serif;
+	color:white;
+	font-size: 20px;
+}
+.ap p{
+	margin-left:10px;
+    padding:0;
+}
+.ap ol{
+	margin-left: 10px;
+	line-height: 150%;
+}
+.program{
+	width:95%;
+	margin:0 auto;
+}
+.p1{
+	border-top: 5px solid rgb(119,184,219);
+}
+.program h2{
+	color:rgb(255,152,159);
+	font-family:'PT Sans', sans-serif;
+	font-weight: bold;
+	font-size: 25px;
+}
+.program h3,h4,p{
+	color:rgb(113,112,112);
+	font-family:'PT Sans', sans-serif;
+	line-height: 150%;
+}
+
+/* Login Page */
+#loginPage{
+	width: 80%;
+	margin: 0 auto;
+	padding-bottom: 20px;
+	padding-top: 30px;
+	border: 1px solid red;
+}
+#signupPage{
+	width: 80%;
+	margin: 0 auto;
+	padding-top: 20px;
+	padding-bottom: 30px;
+	border: 1px solid red;	
+}
