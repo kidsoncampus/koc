@@ -9,8 +9,10 @@
   "author": "ibn e adam",
   "license": "ISC",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.14.2",
     "express": "^4.13.3",
-    "mongoose": "^4.3.6"
+    "mongoose": "^4.3.6",
+    "morgan": "^1.7.0"
   }
 }

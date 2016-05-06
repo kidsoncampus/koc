@@ -5,8 +5,10 @@ var express = require('express'); // call express
 var app = express();// define our app using express
 var bodyParser = require('body-parser');
 //That will grab the mongoose package and connect to our remote database hosted by Modulus.
+var morgan = require('morgan');
 var mongoose   = require('mongoose');
 mongoose.connect('mongodb://admin:admin@jello.modulusmongo.net:27017/Apipar4i');
+var port = process.env.PORT || 3000;        // set our port
 
 var User=require('./app/models/user');
 
@@ -15,10 +17,24 @@ var User=require('./app/models/user');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-var port = process.env.PORT || 3000;        // set our port
+// configure our app to handle CORS requests
+app.use(function(req, res, next) {
+	 res.setHeader('Access-Control-Allow-Origin', '*');
+	 res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
+	 res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, \Authorization');
+	 next();
+	 });
+
+// log all requests to the console
+app.use(morgan('dev'));
 
 // ROUTES FOR OUR API
 // =============================================================================
+
+//app.get('/',function(req,res){
+//	res.send('Welcome to the homepage!');
+//});
+
 var router = express.Router();              // get an instance of the express Router
 
 app.use(express.static(__dirname + '/public'));
@@ -46,6 +62,7 @@ router.route('/signup')
 		user.phone=req.body.phone;
 		user.address=req.body.address;
 		console.log(req.body);
+
 		//save the user and check for errors;
 		user.save(function(err){
 			if(err){res.json({message:'fail'});}
@@ -54,7 +71,7 @@ router.route('/signup')
 			}
 
 
-		});
+		})
 
 	});
 
