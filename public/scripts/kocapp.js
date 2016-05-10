@@ -1,5 +1,5 @@
 
-var app=angular.module ('kocApp', ['ngRoute']);
+var app=angular.module ('kocApp', ['ngRoute', 'ngStorage']);
 
 app.config(function($routeProvider){
 		$routeProvider
@@ -35,7 +35,7 @@ app.config(function($routeProvider){
 		//route for login.html
 		.when ('/login', {
 			templateUrl : 'templates/login.html',
-			controller: 'LoginController'
+			controller: 'loginCtrl'
 		})	
 		.otherwise ('/homepage');
 	})

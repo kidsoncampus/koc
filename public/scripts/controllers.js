@@ -1,16 +1,4 @@
-angular.module ('kocApp')
-
-	.controller('MainController', ['$scope', function ($scope) {
-	
-	}])
-	
-	.controller ('LoginController', ['$scope', function($scope){
-		$scope.userInput = {
-			email : "",
-			password : ""
-		};
-	}])
-
+angular.module ('kocApp',[])
 
 	.controller('wListController',['$scope',function($scope){
 		$scope.myRegex = /^[0-9]{3}-[0-9]{3}-[0-9]{4}$/;
