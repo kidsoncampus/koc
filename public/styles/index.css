@@ -153,3 +153,34 @@
 	padding-bottom: 30px;
 	border: 1px solid red;	
 }
+
+
+.waiting_list {
+	width: 82%;
+	margin: 0 auto;
+	margin-top: 5em;
+	margin-bottom: 5em;
+	overflow: hidden;
+	padding-top: 80px;
+	padding-bottom: 30px;
+}
+
+@media (min-width: 1200px){
+	.waiting_list {
+		width: 1170px;
+	}
+}
+
+@media (min-width: 992px){
+	.waiting_list {
+		width: 970px;
+	}
+}
+
+@media (min-width: 768px){
+	.waiting_list {
+		width: 750px;
+	}
+}
+
+

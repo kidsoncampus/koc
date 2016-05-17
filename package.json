@@ -1,12 +1,9 @@
 {
-  "name": "testing-nodejs",
+  "name": "koc",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "ibn e adam",
+  "author": "Lucy Qiao",
   "license": "ISC",
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",

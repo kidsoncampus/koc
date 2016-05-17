@@ -1,5 +1,5 @@
 
-var app=angular.module ('kocApp', ['ngRoute', 'ngStorage']);
+var app=angular.module ('kocApp', ['ngRoute', 'ngStorage','ngAnimate','ui.bootstrap']);
 
 app.config(function($routeProvider){
 		$routeProvider
@@ -13,9 +13,9 @@ app.config(function($routeProvider){
 			controller : 'MainController'
 		})
 		//route for currentParent.html
-		.when('/currentParent',{
+		.when('/dashboard/:user_id',{
 			templateUrl : 'templates/currentParent.html',
-			controller : 'MainController'
+			controller : 'dashboardCtrl'
 		})	
 		//route for waitinglist.html
 		.when ('/waitinglist', {
