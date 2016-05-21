@@ -6,12 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Kids On Campus Preschool</title>
 
+	<!-- FOR ANGULAR ROUTING -->
+
 	<link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
     <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <link href="bower_components/angular-bootstrap/ui-bootstrap-csp.css">
     <link href="bower_components/bootstrap-social/bootstrap-social.css" rel="stylesheet">
     <link href="styles/index.css" rel="stylesheet">
+	<link href="styles/login.css" rel="stylesheet">
 
 </head>
 <body style="background:url(images/bg1.png); background-size: cover;background-attachment: fixed;">
@@ -91,15 +94,20 @@
 	<!-- build scripts -->
 	<script src="bower_components/jquery/dist/jquery.min.js"></script>
 	<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<!--load angular-->
 	<script src="bower_components/angular/angular.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.6/ngStorage.min.js"></script>
 	<script src="bower_components/angular-route/angular-route.min.js"></script>
 	<script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+	<!--main Angular app files-->
     <script src="scripts/kocapp.js"></script>
+	<script src="scripts/app.routes.js"></script>
+	<!--services-->
+	<script src="model/authService.js"></script>
 	<script src="model/getUserService.js"></script>
-    <!--<script src="scripts/controllers.js"></script>-->
+    <!--controllers-->
 	<script src="controller/signCtrl.js"></script>
 	<script src="controller/loginCtrl.js"></script>
 	<script src="controller/wListController.js"></script>

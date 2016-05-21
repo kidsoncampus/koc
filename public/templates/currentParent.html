@@ -1,24 +1,14 @@
 <div>
-	<div class="row row-border">
-		<div class="media">
-			<div class="media-left">
-				<img src="./images/profile.jpeg" class="media-object img-thumbnail" alt="profile">
-				<h3>{{parentFirstName}} {{parentLastName}}</h3>
-			</div>
-			<div class="media-body">
-				<h3 class="media-heading">Application Status</h3>
-				<p>Your application for {{kidFirstName}} {{kidLastName}} is pending.</p>
-				<span><Strong>Start Date:</Strong> {{2016/9/10}}</span>
-			</div>
-		</div>
+	<h1>Welcome to the Parent Dashboard</h1>
+	<div ng-if="!login.loggedIn">
+		<p>Login to see your own dashboard.</p>
+		<a href="#/login" class="btn btn-primary">Login</a>
+
 	</div>
-	<div class="row row-border">
-		<div>
-			<h2>Notification</h2>
-		</div>
-		<div>
-			<P>Dear Room 1 Parent:
-			   We are so happy to have upcoming PTA event on January 12, 2016. We have our official Room 1 leaders for the 2015/2016 PTA. Crystal (mom of Audrey) Christy (mom of Selah). You may remember that during the parent orientation you were asked to provide your information to share with other parents in the class. The below link will take you to a list that we hope you'll use to plan play dates, send information about community events for kids or to share information other parents may find useful. Plese review
-		</div>
+
+	<div ng-if="login.loggedIn">
+		<p>Manage your own dashboard</p>
+		<a href="#/parentDashboard" class="btn btn-primary">View Your Dashboard</a>
 	</div>
+
 </div>

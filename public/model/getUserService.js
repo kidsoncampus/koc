@@ -1,7 +1,7 @@
 /**
  * Created by LucyQiao on 5/3/16.
  */
-app.service('getUserService',function($http){
+ app.service('getUserService',function($http){
     var newUser=function(userData){
         return $http.post('/koc/signup',userData)
             .then(function successCallback(res){
