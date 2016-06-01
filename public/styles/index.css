@@ -1,17 +1,23 @@
-/***************
- WORDING SYSTEM
- ****************/
+/*========================
+   General
+  ========================*/
 .bigTitle{
 	font-size: 25px;
 	font-family: 'pt Sans',sans-serif;
 	color:white;
+}
+.subTitle{
+	font-family: 'pt Sans',sans-serif;
+	font-size: 18px;
 }
 .detail{
 	font-size:16px;
 	font-family: 'pt Sans',sans-serif;
 	color:white;
 }
-/*homepage*/
+/*========================
+  homepage
+  ========================*/
 .container{
 	width: 82%;
 	margin: 0 auto;
@@ -47,7 +53,9 @@
 	margin:0;
 	padding:0;
 }
-/*carousel picture border-top*/
+/*=======================================
+   carousel picture border-top
+   ======================================*/
 .border-top{
 	border-top:1em solid white;
 }
@@ -102,7 +110,9 @@
 	text-align: center;
 }
 
-/* style for program.html */
+/*===========================
+   style for program.html
+   ========================== */
 .subcon{
 	background-color: white;
 	width:100%;
@@ -156,6 +166,7 @@
 	line-height: 150%;
 }
 
+
 /**==================================
  				signup Page
  ==================================== */
@@ -202,4 +213,25 @@
 	}
 }
 
+/*======================
+  currentParent.html
+  ======================*/
 
+#cp{
+	border:1em solid rgb(254,242,173);
+	width:96%;
+	margin: 0 auto;
+}
+#dashboardLogin{
+	display: block;
+	margin: 0 auto;
+	width: 20%;
+}
+.wrapper{
+	margin-bottom: 3em;
+}
+#viewDashboard, #logout{
+	display:block;
+	margin:0 auto;
+	width:20%;
+}

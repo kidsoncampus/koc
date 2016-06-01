@@ -1,15 +1,25 @@
-<div>
-	<h1>Welcome to the Parent Dashboard</h1>
-	<div ng-if="!login.loggedIn">
-		<p>Login to see your own dashboard.</p>
-		<a href="#/login" class="btn btn-primary">Login</a>
-
+<br>
+<div id="cp" class="container">
+	<div class="row">
+		<img src="images/welcome2.png" class="img-responsive">
+		<h1 class="text-center">Parent Dashboard</h1>		
 	</div>
 
-	<div ng-if="login.loggedIn">
-		<p>Manage your own dashboard</p>
-		<a href="#/parentDashboard" class="btn btn-primary">View Your Dashboard</a>
-		<button type="submit" class="btn btn-default" ng-click="login.doLogout()">Logout</button>
+	<div ng-if="!login.loggedIn" class="row">
+		<p class="subTitle text-center">Please lgogin to see your own dashboard.</p>
+		<div class="row wrapper" >
+			<a href="#/login" class="btn btn-info bt-lg" id="dashboardLogin"  >Login</a>	
+		</div>
+		
 	</div>
 
+	<div ng-if="login.loggedIn" class="row" >
+		<p class="subTitle text-center">Manage your own dashboard</p>
+		<div class="wrapper">
+			<a href="#/parentDashboard" class="btn btn-success btn-lg text-center" id="viewDashboard">View Your Dashboard</a></br>
+			<button type="submit" class="btn btn-default btn-lg" id="logout" ng-click="login.doLogout()">Logout</button>
+		</div>
+	</div>
 </div>
+<br>
+

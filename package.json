@@ -12,6 +12,5 @@
     "jsonwebtoken": "^6.2.0",
     "mongoose": "^4.3.6",
     "morgan": "^1.7.0"
-    //"ngstorage": "^0.3.10"
   }
 }
