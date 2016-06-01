@@ -21,3 +21,17 @@
     to 	{ -moz-transform:rotate(360deg); }
 }
 
+/***================
+	Style
+===================***/
+
+#loginPage{
+    width: 96%;
+    margin: 0 auto;
+    padding-bottom: 20px;
+    padding-top: 30px;
+    border: 1em solid rgb(129,190,111);
+}
+#login-form{
+    margin: 3em;
+}

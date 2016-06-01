@@ -1,3 +1,16 @@
+/***************
+ WORDING SYSTEM
+ ****************/
+.bigTitle{
+	font-size: 25px;
+	font-family: 'pt Sans',sans-serif;
+	color:white;
+}
+.detail{
+	font-size:16px;
+	font-family: 'pt Sans',sans-serif;
+	color:white;
+}
 /*homepage*/
 .container{
 	width: 82%;
@@ -25,6 +38,7 @@
 	overflow: hidden;
 }
 
+
 /*give template area white background*/
 .display{
 	background-color: white;
@@ -37,16 +51,20 @@
 .border-top{
 	border-top:1em solid white;
 }
+.border-down{
+	border-down:1em solid white;
+}
 
-#box1, #box2, #box3,#box4{
+#box1, #box2, #box3, #box4{
 	padding-bottom: 1em;
 	color:white;
 	text-align: center;
 	font-family: 'pt Sans',sans-serif;
-	
+
 }
 #box1, #box2, #box3,#box4 p{
 	font-size:14px;
+	color: white;
 }
 
 #box1{
@@ -113,7 +131,7 @@
 }
 .ap p{
 	margin-left:10px;
-    padding:0;
+	padding:0;
 }
 .ap ol{
 	margin-left: 10px;
@@ -138,23 +156,24 @@
 	line-height: 150%;
 }
 
-/* Login Page */
-#loginPage{
-	width: 80%;
-	margin: 0 auto;
-	padding-bottom: 20px;
-	padding-top: 30px;
-	border: 1px solid red;
-}
+/**==================================
+ 				signup Page
+ ==================================== */
+
 #signupPage{
-	width: 80%;
+	width: 96%;
 	margin: 0 auto;
-	padding-top: 20px;
+	padding-top: 30px;
 	padding-bottom: 30px;
-	border: 1px solid red;	
+	border: 1em solid rgb(255,200,196);
+}
+#signupForm{
+	margin: 3em;
 }
 
-
+/**==================================
+ 				WaitingList Page
+ ==================================== */
 .waiting_list {
 	width: 82%;
 	margin: 0 auto;

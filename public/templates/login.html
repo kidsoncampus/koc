@@ -1,39 +1,47 @@
 
-<div id="loginPage">
-	<h1 class="text-center"><span class="glyphicon glyphicon-lock"></span> Login</h1>
+<br>
+<div id="loginPage" class="add-padding">
+	<div id="login-form">
+		<h1 class="text-center"><span class="glyphicon glyphicon-lock"></span> Login</h1>
 
-	<form ng-submit="login.doLogin()">
+		<form ng-submit="login.doLogin()" name="loginForm" role="form" novalidate>
 
-		<!--User email input-->
-		<div class="form-group">
-			<label class="control-label"><span class="glyphicon glyphicon-user"></span> Email</label>
-			<div>
-				<input class="form-control" type="text" placeholder="Enter your email" ng-model = "login.loginData.email">
+			<!--User email input-->
+			<div class="form-group" ng-class = "{'has-error has-feedback' : loginForm.email.$invalid && loginForm.email.$dirty}">
+				<label class="control-label"><span class="glyphicon glyphicon-user"></span> Email</label>
+				<div>
+					<input name = "email" class="form-control" type="text" placeholder="Enter your email" ng-model = "login.loginData.email" required>
+					<span ng-show = "loginForm.email.$invalid && loginForm.email.$dirty" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+					<span ng-show = "(loginForm.email.$error.required || loginForm.email.$error.email) && loginForm.email.$dirty" class="help-block">Enter a valid email address!</span>
+				</div>
 			</div>
-		</div>
 
-		<!--User password input-->
-		<div class="form-group">
-			<label class="control-label"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
-			<div>
-				<input class="form-control" type="password" placeholder="Enter your password" ng-model = "login.loginData.password" required>
+			<!--User password input-->
+			<div class="form-group" ng-class = "{'has-error has-feedback' : loginForm.password.$invalid && !loginForm.password.$pristine}">
+				<label class="control-label"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
+				<div>
+					<input name="password" class="form-control" type="password" placeholder="Enter your password" ng-model = "login.loginData.password" required>
+					<span ng-show = "loginForm.password.$invalid && !loginForm.password.$pristine" class = "glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" ></span>
+					<span ng-show = "loginForm.password.$error.required && !loginForm.password.$pristine" class="help-block">Password is required!</span>
+				</div>
 			</div>
-		</div>
 
-		<div class="alert alert-danger" ng-if="login.error">
-			{{ login.error }}
-		</div>
+			<div class="alert alert-danger" ng-if="login.error">
+				{{ login.error }}
+			</div>
 
-		<!--Login Button-->
+			<!--Login Button-->
+			<div>
+				<button ng-disabled = "loginForm.$invalid" ng-if="!login.processing" type="submit" class="btn btn-success">Login</button>
+				<button ng-if="login.processing" class="spinner"><span class="glyphicon glyphicon-repeat"></span></button>
+			</div>
+
+		</form>
+
+		<br>
 		<div>
-			<button ng-if="!login.processing"type="submit" class="btn btn-success">Login</button>
-			<button ng-if="login.processing" class="spinner"><span class="glyphicon glyphicon-repeat"></span></button>
+			<p class="text-left">Not a member? <a href="#/signup">Sign Up</a></p>
 		</div>
-
-	</form>
-
-	<br>
-	<div>
-		<p class="text-left">Not a member? <a href="#/signup">Sign Up</a></p>
 	</div>
 </div>
+<br>

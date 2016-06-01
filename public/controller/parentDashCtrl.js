@@ -12,6 +12,4 @@ app.controller('parentDashCtrl',function($scope,$location,Auth){
         $location.path("/login");
     };
 
-
-
 });
