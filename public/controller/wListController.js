@@ -1,26 +1,40 @@
 /**
- * Created by angelawang on 5/11/16.
+ * Created by Lucy Qiao on 5/26/16.
  */
 
-// angular.module('kocApp',['ngAnimate','ui.bootstrap'])
 
-app.controller('wListController', function($scope){
+app.controller('wListController', function($scope,applicationService,$location,Auth){
 
-    $scope.myRegex = /^[0-9]{3}-[0-9]{3}-[0-9]{4}$/;
+    //get login user info
+    if (Auth.isLoggedIn()) {
+        Auth.getUser()
+            .then(function(data) {
+                $scope.email = data.data.email;
+                $scope.fName=data.data.fName;
+            });
+    } else {
+        $location.path("/login");
+    };
 
-    $scope.applicationList = [
+    $scope.dt='';
+    $scope.chFname='';
+    $scope.chLname='';
+    $scope.chGender='';
+    $scope.b_dt='';
+    $scope.program='';
+    $scope.eFname='';
+    $scope.eLname='';
+    $scope.ePhone='';
+    $scope.eEmail='';
+    $scope.eAddress='';
+    $scope.p_dt='';
+    $scope.priorityLevel1='';
+    $scope.priorityLevel2='';
 
-        { applicationId: 1, Name: 'New Family'},
-        { applicationId: 2, Name: 'Current KOC Family (KOC Priority is Established After 3 Months of KOC Affiliation)' }
-    ];
 
 
-    $scope.level1List = [
-        { level1Id: 1, Name: 'Faculty/Staff' },
-        { level1Id: 2, Name: 'Student' },
-        { level1Id: 3, Name: 'Grandparent' },
-        { level1Id: 4, Name: 'Alumni' }
-    ];
+    //$scope.myRegex = /^[0-9]{3}-[0-9]{3}-[0-9]{4}$/;
+
 
     $scope.applicationList = [
 
@@ -29,44 +43,11 @@ app.controller('wListController', function($scope){
         { applicationId: 3, Name: 'Sea Turtle (children 2 to 3 years of age)' }
     ];
 
-    $scope.level2List = [];
-    $scope.level3List = [];
 
-    $scope.$watch('user.level1', function (newVal, oldVal) {
-
-        if (newVal == 1 || newVal==3){
-
-            $scope.level2List = [ { level2Id:1, Name: 'Information System'},
-                { level2Id:2, Name: 'Computer Science'}];
-        }
-        else if (newVal == 2){
-            $scope.level2List = [ { level2Id:3, Name: 'Undergraduate'},
-                { level2Id:4, Name: 'Graduate' } ];
-        }
-        else if (newVal == 4){
-            $scope.level2List = [ { level2Id:5, Name: 'Class of'}];
-        }
-
-    });
+    $scope.level1List = ["Faculty/Staff","Student","Alumni"];
 
 
-    $scope.$watch('user.level2', function (newVal, oldVal) {
-
-        if (newVal == 1 || newVal==2 || newVal==3 ){
-
-            $scope.level3List = [ { level3Id:1, Name: 'Full Time'},
-                { level3Id:2, Name: 'Part Time'},
-            ];
-        }
-        else if(newVal == 5){
-            $scope.level3List = [];
-            for(var i = 0, start = 1900; i < 150; i++) {
-                $scope.level3List.push({level3Id:3, Name: start + i});
-            }
-
-        }
-    });
-
+    //$scope.level2List = [];
 
 
 
@@ -166,17 +147,31 @@ app.controller('wListController', function($scope){
     };
 
 
+
     $scope.submitForm = function () {
+        var applicationData={'email':$scope.email,
+                             'submitDate':$scope.dt,
+                             'chFname':$scope.chFname,
+                             'chLname':$scope.chLname,
+                             'chGender':$scope.chGender,
+                             'chBirthday':$scope.b_dt,
+                             'program':$scope.program,
+                             'eFname':$scope.eFname,
+                             'eLname':$scope.eLname,
+                             'ePhone':$scope.ePhone,
+                             'eEmail':$scope.eEmail,
+                             'eAddress':$scope.eAddress,
+                             'perferredStartDate':$scope.p_dt,
+                             'priorityLevel1':$scope.priorityLevel1
 
-        // Set the 'submitted' flag to true
-        $scope.submitted = true;
 
-        if ($scope.userForm.$valid) {
-            alert("Form is valid!");
-        }
-        else {
-            alert("Please correct errors!");
-        }
+
+        };
+        applicationService.newApplication(applicationData).then(function(){
+            $location.path("/parentDashboard");
+        });
+
+
     };
 
 });

@@ -2,12 +2,19 @@
     <div class="media">
         <div class="media-left">
             <img src="./images/profile.jpeg" class="media-object img-thumbnail" alt="profile">
-            <h3>{{parentFirstName}} {{parentLastName}}</h3>
+            <h3>{{username}}</h3>
+
+            <div>
+               <a href="#/waitinglist" class="btn btn-primary">Start Application for your kids</a>
+            </div>
         </div>
+
         <div class="media-body">
-            <h3 class="media-heading">Application Status</h3>
-            <p>Your application for {{kidFirstName}} {{kidLastName}} is pending.</p>
-            <span><Strong>Start Date:</Strong> {{2016/9/10}}</span>
+            <div class="applicationStatus" ng-controller="wListController">
+                <h3 class="media-heading">Application Status</h3>
+                <p>Your application for {{applications.chLname}} is pending.</p>
+            </div>
+
         </div>
     </div>
 </div>

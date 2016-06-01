@@ -20,7 +20,7 @@ angular.module('app.routes',['ngRoute'])
         //route for parentdashboard.html
         .when('/parentDashboard',{
             templateUrl : 'templates/parentDashboard.html',
-            controller : 'dashboardCtrl'
+            controller : 'parentDashCtrl'
         })
         //route for waitinglist.html
         .when ('/waitinglist', {

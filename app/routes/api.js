@@ -1,10 +1,13 @@
 /**
  * Created by LucyQiao on 5/16/16.
  */
-var bodyParser = require('body-parser'); 	// get body-parser
+//var bodyParser = require('body-parser'); 	// get body-parser
 var User       = require('../models/user');
+var ApplicationForm   = require('../models/applicationForm');
 var jwt        = require('jsonwebtoken');
 var config     = require('../../config');
+var applications  = require('./applicationFormAPI');
+
 
 // super secret for creating tokens
 var superSecret = config.secret;
@@ -128,9 +131,22 @@ module.exports=function(app,express){
             })
         });
 
+    //applicationForm
+    app.route('/waitinglist')
+        .post(applications.create)
+        .get(applications.list);
+
+    app.route('/waitinglist/:applicationId')
+        .get(applications.read);
+
+    app.param('applicationId', applications.applicationByID);
+
     // api endpoint to get user information
     apiRouter.get('/me', function(req, res) {
-        res.send(req.decoded);
+        User.findOne({email: req.decoded.email}, function(err, user) {
+            if (err) res.send(err);
+            res.json(user);
+        });
     });
 
     return apiRouter;
