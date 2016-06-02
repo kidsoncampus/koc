@@ -10,9 +10,25 @@
         </div>
 
         <div class="media-body">
-            <div class="applicationStatus" ng-controller="wListController">
+            <div class="applicationStatus">
                 <h3 class="media-heading">Application Status</h3>
-                <p>Your application for {{applications.chLname}} is pending.</p>
+                <table border=1>
+                    <tr>
+                        <th>Submit Date</td>
+                        <th>Kid First Name</td>
+                        <th>Kid Last Name</td>
+                        <th>Program</td>
+                        <th>Application Status</td>
+                    </tr>
+                    <tr ng-repeat="x in applications">
+                        <td>{{x.submitDate | date:'M/dd/yyyy'}}</td>
+                        <td>{{x.chFname}}</td>
+                        <td>{{x.chLname}}</td>
+                        <td>{{x.program}}</td>
+                        <td>pending</td>
+                    </tr>
+                </table>
+                <!--<p>Your application for {{applications.chLname}} is pending.</p>-->
             </div>
 
         </div>

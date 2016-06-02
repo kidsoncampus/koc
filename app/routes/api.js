@@ -133,13 +133,22 @@ module.exports=function(app,express){
 
     //applicationForm
     app.route('/waitinglist')
-        .post(applications.create)
-        .get(applications.list);
+        .post(applications.create);
+        //.get(applications.list);
 
     app.route('/waitinglist/:applicationId')
         .get(applications.read);
 
     app.param('applicationId', applications.applicationByID);
+
+    app.route('/users/:email')
+        .get(function(req,res){
+        if(req.params.email){
+            ApplicationForm.find({email:req.params.email},function(err,docs){
+                res.json(docs);
+            });
+        }
+    });
 
     // api endpoint to get user information
     apiRouter.get('/me', function(req, res) {

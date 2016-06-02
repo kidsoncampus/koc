@@ -16,6 +16,8 @@ app.controller('wListController', function($scope,applicationService,$location,A
         $location.path("/login");
     };
 
+
+
     $scope.dt='';
     $scope.chFname='';
     $scope.chLname='';
@@ -163,8 +165,6 @@ app.controller('wListController', function($scope,applicationService,$location,A
                              'eAddress':$scope.eAddress,
                              'perferredStartDate':$scope.p_dt,
                              'priorityLevel1':$scope.priorityLevel1
-
-
 
         };
         applicationService.newApplication(applicationData).then(function(){
