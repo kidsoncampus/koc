@@ -15,6 +15,7 @@
                 <table border=1>
                     <tr>
                         <th>Submit Date</td>
+                        <th>Start Date</td>
                         <th>Kid First Name</td>
                         <th>Kid Last Name</td>
                         <th>Program</td>
@@ -22,6 +23,7 @@
                     </tr>
                     <tr ng-repeat="x in applications">
                         <td>{{x.submitDate | date:'M/dd/yyyy'}}</td>
+                        <td>{{x.perferredStartDate | date:'M/dd/yyyy'}}</td>
                         <td>{{x.chFname}}</td>
                         <td>{{x.chLname}}</td>
                         <td>{{x.program}}</td>
