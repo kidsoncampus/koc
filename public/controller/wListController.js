@@ -32,29 +32,33 @@ app.controller('wListController', function($scope,applicationService,$location,A
     $scope.eEmail='';
     $scope.eAddress='';
     $scope.p_dt='';
-    $scope.priorityLevel1='';
-    $scope.priorityLevel2='';
+    $scope.priorityLevel1= null;
+    $scope.priorityLevel2= "";
     $scope.status='';
 
 
-
     //$scope.myRegex = /^[0-9]{3}-[0-9]{3}-[0-9]{4}$/;
-
-
+    
     $scope.applicationList = [
-
         { applicationId: 1, Name: 'Dolphin & Shark (children 3 to 5 years of age)'},
         { applicationId: 2, Name: 'Starfish & Sea Otter (children 6 weeks to 30 months of age)' },
         { applicationId: 3, Name: 'Sea Turtle (children 2 to 3 years of age)' }
     ];
 
+    var alumnis = [];
+    var startYear = 1950;
+    var prefixName = "Class Of ";
 
-    $scope.level1List = ["Faculty/Staff","Student","Alumni"];
+    for (var i = 0; i < 100; i++) {
+        alumnis.push(prefixName + (startYear + i));
+    }
 
-
-    //$scope.level2List = [];
-
-
+    $scope.level1List = [
+        {priority:"Faculty/Staff", types: ["Parent", "Grandparent"]},
+        {priority:"Student", types: ["Full Time", "Part Time"]},
+        {priority:"Alumni", types: alumnis}
+    ];
+   
 
     // import datepicker
     $scope.today = function() {
@@ -167,7 +171,8 @@ app.controller('wListController', function($scope,applicationService,$location,A
                              'eEmail':$scope.eEmail,
                              'eAddress':$scope.eAddress,
                              'perferredStartDate':$scope.p_dt,
-                             'priorityLevel1':$scope.priorityLevel1,
+                             'priorityLevel1':$scope.priorityLevel1.priority,
+                             'priorityLevel2':$scope.priorityLevel2,
                              'parentName':$scope.parentName,
                              'pPhone':$scope.pPhone
 

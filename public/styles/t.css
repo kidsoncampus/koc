@@ -1,20 +1,4 @@
-/*body{
-	font-family: Arial;
-}
-table{
-	border-collapse: collapse;
-}
-td{
-	border:1px solid grey;
-	padding: 5px;
-	text-align: center;
-}
-th{
-	border:1px solid grey;
-	padding:5px;
-	text-align: center;
-	cursor: pointer;
-}*/
+
 .arrow-up{
 	width:0;
 	height:0;
@@ -37,4 +21,16 @@ table, td,th  {
   border-collapse: collapse;
   padding: 5px;
   text-align: center;
+}
+
+table input {
+	width: 100%;
+}
+
+.management_container {
+	padding: 0 15px 30px 15px;
+	margin: 0 auto;
+	margin-top: 5em;
+	margin-bottom: 5em;
+	overflow: hidden;
 }

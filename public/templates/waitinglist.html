@@ -123,12 +123,28 @@
                     <label class="control-label">Faimly's SCU affiliation (Listed in Order of Admission Priority)</label>
 
                     <select class="form-control" ng-model="priorityLevel1"
-                            ng-options="x for x in level1List"
+                            ng-options="x.priority for x in level1List"
                             ng-required="true">
                         <option value=''>Select</option>
                     </select>
                 </div>
 
+                <div ng-show="priorityLevel1 != null">
+                    <div class="form-group">
+                        <select class="form-control" ng-model="priorityLevel2"
+                                ng-options="x for x in priorityLevel1.types"
+                                ng-required="true">
+                            <option value=''>Select</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!--priorityLevel1:-->
+                <!--{{priorityLevel1}}-->
+
+
+                <!--priorityLevel2:-->
+                <!--{{priorityLevel2}}-->
 
 
 

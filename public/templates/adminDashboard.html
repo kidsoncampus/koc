@@ -13,7 +13,7 @@
     </div>
 </div>
 
-<div  ng-if="adminDash.loggedIn && userType===-1" class="container">
+<div  ng-if="adminDash.loggedIn && userType===-1" class="management_container">
         <h2>KOC Management</h2>
           <ul class="nav nav-tabs">
             <li class="active"><a data-toggle="tab" href="#application">Application</a></li>
@@ -24,10 +24,9 @@
           <!-- application -->
             <div id="application" class="tab-pane fade in active">
                 <div class="container-fluid">
-                    <div class="row">
-                    <div class="col-sm-8">
+                    <div class="row table-responsive">
                         <div class="page-header"><h4>Application Management</h4></div>
-                        <table>
+                        <table class="table table-bordered table-striped">
                             <tr>
                                 <th ng-click="sortData('priority')">Priority
                                 <div ng-class="getSortClass('priority')"></div>
@@ -95,21 +94,14 @@
                                 <td>{{wl.age }}</td>
                                 <td>{{wl.sex }}</td>
                                 <td>
-                                    <button type="button"  class="btn btn-primary btn-xs" ng-click="removePerson($index)" >Approve</button>
-                                    <button  class="btn btn-danger btn-xs" ng-click="removePerson($index)">Delete</button>
+                                    <button type="button"  class="btn btn-primary btn-xs" ng-click="removePerson(wl._id)" >Approve</button>
+                                    <button  class="btn btn-danger btn-xs" ng-click="removePerson(wl._id)">Delete</button>
                                 </td>
                             </tr>   
                         </table>
-                    </div>
                     </div>                
                 </div>
-                <!-- <h4>{{wl.length}} remain</h4>
-                <ul>
-			      <li ng-repeat="wl in filteredTodos">{{wl.text}}</li>
-			    </ul>
-		        <div data-pagination="" data-num-pages="numPages()" 
-			      data-current-page="currentPage" data-max-size="maxSize"data-boundary-links="true">
-			    </div> -->
+
 
             </div>
 
