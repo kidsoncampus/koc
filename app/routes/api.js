@@ -133,8 +133,8 @@ module.exports=function(app,express){
 
     //applicationForm
     app.route('/waitinglist')
-        .post(applications.create);
-        //.get(applications.list);
+        .post(applications.create)
+        .get(applications.list);
 
     app.route('/waitinglist/:applicationId')
         .get(applications.read);

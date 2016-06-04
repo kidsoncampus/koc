@@ -11,7 +11,8 @@ var UserSchema = new Schema({
 	fName:String,
 	lName:String,
 	phone:Number,
-	address:String
+	address:String,
+	userType:{type:Number, default:1}
 });
 
 //hash the password before the user is saved

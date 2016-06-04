@@ -1,0 +1,40 @@
+/*body{
+	font-family: Arial;
+}
+table{
+	border-collapse: collapse;
+}
+td{
+	border:1px solid grey;
+	padding: 5px;
+	text-align: center;
+}
+th{
+	border:1px solid grey;
+	padding:5px;
+	text-align: center;
+	cursor: pointer;
+}*/
+.arrow-up{
+	width:0;
+	height:0;
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	border-bottom: 10px solid grey;
+	display: inline-block;
+}
+.arrow-down{
+	width:0;
+	height:0;
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	border-top: 10px solid grey;
+	display: inline-block;
+
+}
+table, td,th  {
+  border: 1px solid grey;
+  border-collapse: collapse;
+  padding: 5px;
+  text-align: center;
+}

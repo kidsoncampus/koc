@@ -27,6 +27,11 @@ angular.module('app.routes',['ngRoute'])
             templateUrl : 'templates/waitinglist.html',
             controller : 'wListController'
         })
+        .when ('/adminDashboard', {
+            templateUrl : 'templates/adminDashboard.html',
+            controller : 'adminCtrl',
+            controllerAs:'adminDash'
+        })
         //route for donation.html
         .when ('/donation', {
             templateUrl : 'templates/donation.html',

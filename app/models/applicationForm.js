@@ -20,7 +20,10 @@ var ApplicationFormSchema = new Schema({
     eAddress:String,
     perferredStartDate: Date,
     priorityLevel1:String,
-    priorityLevel2:String
+    priorityLevel2:String,
+    status:{type:String, default:"Pending"},
+    parentName:String,
+    pPhone:Number
 });
 
 var ApplicationForm = mongoose.model('ApplicationForm', ApplicationFormSchema);

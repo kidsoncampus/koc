@@ -32,7 +32,15 @@ app.controller('loginCtrl',function($rootScope,$location,Auth) {
                 vm.processing=false;
                 //if a user successfully logs in, redirect to users dashboard page
                 if(data.success){
-                    $location.path('/currentParent');
+                    Auth.getUser()
+                        .then(function(data) {
+                            vm.user = data.data;
+                            if(vm.user.userType===-1){
+                                $location.path('/adminDashboard');
+                            }else{
+                                $location.path('/currentParent');
+                            }
+                        });
                 }else{
                     vm.error=data.message;
                 }

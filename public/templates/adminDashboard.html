@@ -1,0 +1,144 @@
+<div ng-if="(!adminDash.loggedIn)||(adminDash.loggedIn && userType===1)" class="container">
+    <div class="row">
+        <img src="images/welcome2.png" class="img-responsive">
+        <h1 class="text-center">Admin Dashboard</h1>
+    </div>
+
+    <div class="row">
+        <p class="subTitle text-center">Sorry, only admin can access this page.</p>
+        <div class="row wrapper" >
+            <a href="#/login" class="btn btn-info bt-lg" id="dashboardLogin"  >Login As Admin</a>
+        </div>
+
+    </div>
+</div>
+
+<div  ng-if="adminDash.loggedIn && userType===-1" class="container">
+        <h2>KOC Management</h2>
+          <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#application">Application</a></li>
+            <li><a data-toggle="tab" href="#donation">Donation</a></li> 
+            <li><a data-toggle="tab" href="#notification">Notification</a></li>
+          </ul>
+          <div class="tab-content">
+          <!-- application -->
+            <div id="application" class="tab-pane fade in active">
+                <div class="container-fluid">
+                    <div class="row">
+                    <div class="col-sm-8">
+                        <div class="page-header"><h4>Application Management</h4></div>
+                        <table>
+                            <tr>
+                                <th ng-click="sortData('priority')">Priority
+                                <div ng-class="getSortClass('priority')"></div>
+                                </th>
+                                <th ng-click="sortData('type')">Type
+                                <div ng-class="getSortClass('type')"></div>
+                                </th>
+                                <th ng-click="sortData('submittedDate')">Date of Submit
+                                <div ng-class="getSortClass('submittedDate')"></div>
+                                </th>
+                                <th ng-click="sortData('dateOfEnroll')">Date of Enroll
+                                <div ng-class="getSortClass('dateOfEnroll')"></div>
+                                </th>
+                                <th ng-click="sortData('pname')">Parents Name
+                                    <div ng-class="getSortClass('pname')"></div>
+                                </th>
+                                <th ng-click="sortData('pnumber')">Phone Number
+                                    <div ng-class="getSortClass('pnumber')"></div>
+                                </th>
+                                <th ng-click="sortData('class')">Class
+                                <div ng-class="getSortClass('class')"></div>
+                                </th>
+                                <th ng-click="sortData('kfname')">
+                                Kids FirstName
+                                <div ng-class="getSortClass('kfname')"></div>
+                                </th>
+                                <th ng-click="sortData('klname')">
+                                    Kids LastName
+                                    <div ng-class="getSortClass('klname')"></div>
+                                </th>
+                                <th ng-click="sortData('age')">Age
+                                <div ng-class="getSortClass('age')"></div>
+                                </th>
+                                <th ng-click="sortData('sex')">Sex
+                                <div ng-class="getSortClass('sex')"></div>
+                                </th>
+                                <th ng-click="sortData('decision')">Decision
+                                <div ng-class="getSortClass('decision')"></div>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td><input ng-model="wl_priority" /></td>
+                                <td><input ng-model="wl_type" /></td>
+                                <td><input ng-model="wl_submittedDate" /></td>
+                                <td><input ng-model="wl_dateOfEnroll" /></td>
+                                <td><input ng-model="wl_pname" /></td>
+                                <td><input ng-model="wl_pnumber" /></td>
+                                <td><input ng-model="wl_class" /></td>
+                                <td><input ng-model="wl_kfname" /></td>
+                                <td><input ng-model="wl_klname" /></td>
+                                <td><input ng-model="wl_age" /></td>
+                                <td><input ng-model="wl_sex" /></td>
+                                <td></td>
+                            </tr>
+                            <tr ng-repeat="wl in wls = (wl | orderBy:sortColumn:reverseSort | filter:{priority: wl_priority,type:wl_type, submittedDate:wl_submittedDate, dateOfEnroll:wl_dateOfEnroll,class:wl_class,name:wl_name,age:wl_age,sex:wl_sex})">
+                                <td>{{wl.priority}}</td>
+                                <td>{{wl.type}}</td>
+                                <td>{{wl.submittedDate |date:"MM/dd/yyyy"}}</td>
+                                <td>{{wl.dateOfEnroll |date:"MM/dd/yyyy"}}</td>
+                                <td>{{wl.pname}}</td>
+                                <td>{{wl.pnumber}}</td>
+                                <td>{{wl.class}}</td>
+                                <td>{{wl.kfname }}</td>
+                                <td>{{wl.klname }}</td>
+                                <td>{{wl.age }}</td>
+                                <td>{{wl.sex }}</td>
+                                <td>
+                                    <button type="button"  class="btn btn-primary btn-xs" ng-click="removePerson($index)" >Approve</button>
+                                    <button  class="btn btn-danger btn-xs" ng-click="removePerson($index)">Delete</button>
+                                </td>
+                            </tr>   
+                        </table>
+                    </div>
+                    </div>                
+                </div>
+                <!-- <h4>{{wl.length}} remain</h4>
+                <ul>
+			      <li ng-repeat="wl in filteredTodos">{{wl.text}}</li>
+			    </ul>
+		        <div data-pagination="" data-num-pages="numPages()" 
+			      data-current-page="currentPage" data-max-size="maxSize"data-boundary-links="true">
+			    </div> -->
+
+            </div>
+
+
+            <!-- notification -->
+            <div id="notification" class="tab-pane fade">
+                <div class="col-sm-8 col-sm-offset-2" >
+                    <div class="page-header"><h4>Notification</h4></div>
+                    <form name="notification" novalidate>
+                    <!--subject-->
+                    <div class="form-group" ng-class="{ 'has-error' : userForm.g_name.$invalid && (userForm.g_name.$dirty || submitted)}">
+                        <label class="control-label"> Subject:</label>
+                        <input type="text"  name="g_name" class="form-control" ng-model="user.g_name" placeholder="" ng-required="true">
+                        <label class="control-label" ng-show="userForm.g_name.$error.required && (userForm.g_name.$dirty || submitted)" class="help-block">Subject is required.</label>
+                    </div>
+
+                    <!--message-->
+                    <div class="form-group" ng-class="{ 'has-error' : userForm.g_address.$invalid && (userForm.g_address.$dirty || submitted)}">
+                        <label class="control-label">Message</label>
+                        <textarea placeholder="" rows="3"  name="g_address" class="form-control" ng-model="user.g_address" placeholder="" ng-required="true"></textarea>
+                        <label class="control-label" ng-show="userForm.g_address.$error.required && (userForm.g_address.$dirty || submitted)" class="help-block">content is required.</label>
+                    </div>
+                    <div><button type="submit" class="btn btn-primary" ng-disabled = "notification.$invalid" ng-click="saveUser()">Send</button></div>
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+
+ </div>
+

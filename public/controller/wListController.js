@@ -11,6 +11,8 @@ app.controller('wListController', function($scope,applicationService,$location,A
             .then(function(data) {
                 $scope.email = data.data.email;
                 $scope.fName=data.data.fName;
+                $scope.parentName=data.data.fName +' '+ data.data.lName;
+                $scope.pPhone=data.data.phone;
             });
     } else {
         $location.path("/login");
@@ -32,6 +34,7 @@ app.controller('wListController', function($scope,applicationService,$location,A
     $scope.p_dt='';
     $scope.priorityLevel1='';
     $scope.priorityLevel2='';
+    $scope.status='';
 
 
 
@@ -164,7 +167,9 @@ app.controller('wListController', function($scope,applicationService,$location,A
                              'eEmail':$scope.eEmail,
                              'eAddress':$scope.eAddress,
                              'perferredStartDate':$scope.p_dt,
-                             'priorityLevel1':$scope.priorityLevel1
+                             'priorityLevel1':$scope.priorityLevel1,
+                             'parentName':$scope.parentName,
+                             'pPhone':$scope.pPhone
 
         };
         applicationService.newApplication(applicationData).then(function(){
