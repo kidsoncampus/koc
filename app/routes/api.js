@@ -133,8 +133,8 @@ module.exports=function(app,express){
 
     //applicationForm
     app.route('/waitinglist')
-        .post(applications.create)
-        .get(applications.list);
+        .post(applications.create);
+
 
     app.route('/waitinglist/:applicationId')
         .get(applications.read);
@@ -149,6 +149,9 @@ module.exports=function(app,express){
             });
         }
     });
+
+    app.route('/adminDashboard')
+        .get(applications.list);
 
     // api endpoint to get user information
     apiRouter.get('/me', function(req, res) {

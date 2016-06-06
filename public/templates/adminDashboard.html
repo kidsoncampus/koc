@@ -29,16 +29,33 @@
                         <table class="table table-bordered table-striped">
                             <tr>
                                 <th ng-click="sortData('priority')">Priority
-                                <div ng-class="getSortClass('priority')"></div>
+                                    <div ng-class="getSortClass('priority')"></div>
                                 </th>
                                 <th ng-click="sortData('type')">Type
-                                <div ng-class="getSortClass('type')"></div>
+                                    <div ng-class="getSortClass('type')"></div>
                                 </th>
                                 <th ng-click="sortData('submittedDate')">Date of Submit
-                                <div ng-class="getSortClass('submittedDate')"></div>
+                                    <div ng-class="getSortClass('submittedDate')"></div>
                                 </th>
                                 <th ng-click="sortData('dateOfEnroll')">Date of Enroll
-                                <div ng-class="getSortClass('dateOfEnroll')"></div>
+                                    <div ng-class="getSortClass('dateOfEnroll')"></div>
+                                </th>
+                                <th ng-click="sortData('class')">Class
+                                    <div ng-class="getSortClass('class')"></div>
+                                </th>
+                                <th ng-click="sortData('kfname')">
+                                    Kids FirstName
+                                    <div ng-class="getSortClass('kfname')"></div>
+                                </th>
+                                <th ng-click="sortData('klname')">
+                                    Kids LastName
+                                    <div ng-class="getSortClass('klname')"></div>
+                                </th>
+                                <th ng-click="sortData('age')">Age
+                                    <div ng-class="getSortClass('age')"></div>
+                                </th>
+                                <th ng-click="sortData('sex')">Sex
+                                    <div ng-class="getSortClass('sex')"></div>
                                 </th>
                                 <th ng-click="sortData('pname')">Parents Name
                                     <div ng-class="getSortClass('pname')"></div>
@@ -46,53 +63,35 @@
                                 <th ng-click="sortData('pnumber')">Phone Number
                                     <div ng-class="getSortClass('pnumber')"></div>
                                 </th>
-                                <th ng-click="sortData('class')">Class
-                                <div ng-class="getSortClass('class')"></div>
-                                </th>
-                                <th ng-click="sortData('kfname')">
-                                Kids FirstName
-                                <div ng-class="getSortClass('kfname')"></div>
-                                </th>
-                                <th ng-click="sortData('klname')">
-                                    Kids LastName
-                                    <div ng-class="getSortClass('klname')"></div>
-                                </th>
-                                <th ng-click="sortData('age')">Age
-                                <div ng-class="getSortClass('age')"></div>
-                                </th>
-                                <th ng-click="sortData('sex')">Sex
-                                <div ng-class="getSortClass('sex')"></div>
-                                </th>
                                 <th ng-click="sortData('decision')">Decision
-                                <div ng-class="getSortClass('decision')"></div>
+                                    <div ng-class="getSortClass('decision')"></div>
                                 </th>
                             </tr>
                             <tr>
-                                <td><input ng-model="wl_priority" /></td>
-                                <td><input ng-model="wl_type" /></td>
-                                <td><input ng-model="wl_submittedDate" /></td>
-                                <td><input ng-model="wl_dateOfEnroll" /></td>
-                                <td><input ng-model="wl_pname" /></td>
-                                <td><input ng-model="wl_pnumber" /></td>
-                                <td><input ng-model="wl_class" /></td>
-                                <td><input ng-model="wl_kfname" /></td>
-                                <td><input ng-model="wl_klname" /></td>
-                                <td><input ng-model="wl_age" /></td>
-                                <td><input ng-model="wl_sex" /></td>
-                                <td></td>
+                                <td><input ng-model="search.priorityLevel1"/></td>
+                                <td><input ng-model="search.priorityLevel2"/></td>
+                                <td><input ng-model="search.submitDate"/></td>
+                                <td><input ng-model="search.perferredStartDate"/></td>
+                                <td><input ng-model="search.program"/></td>
+                                <td><input ng-model="search.chFname"/></td>
+                                <td><input ng-model="search.chLname"/></td>
+                                <td><input ng-model="search.chBirthday"/></td>
+                                <td><input ng-model="search.chGender"/></td>
+                                <td><input ng-model="search.parentName"/></td>
+                                <td><input ng-model="search.pPhone"/></td>
                             </tr>
-                            <tr ng-repeat="wl in wls = (wl | orderBy:sortColumn:reverseSort | filter:{priority: wl_priority,type:wl_type, submittedDate:wl_submittedDate, dateOfEnroll:wl_dateOfEnroll,class:wl_class,name:wl_name,age:wl_age,sex:wl_sex})">
-                                <td>{{wl.priority}}</td>
-                                <td>{{wl.type}}</td>
-                                <td>{{wl.submittedDate |date:"MM/dd/yyyy"}}</td>
-                                <td>{{wl.dateOfEnroll |date:"MM/dd/yyyy"}}</td>
-                                <td>{{wl.pname}}</td>
-                                <td>{{wl.pnumber}}</td>
-                                <td>{{wl.class}}</td>
-                                <td>{{wl.kfname }}</td>
-                                <td>{{wl.klname }}</td>
-                                <td>{{wl.age }}</td>
-                                <td>{{wl.sex }}</td>
+                            <tr ng-repeat="wl in wls | orderBy:sortColumn:reverseSort | filter : search">
+                                <td>{{wl.priorityLevel1}}</td>
+                                <td>{{wl.priorityLevel2}}</td>
+                                <td>{{wl.submitDate |date:"MM/dd/yyyy"}}</td>
+                                <td>{{wl.perferredStartDate |date:"MM/dd/yyyy"}}</td>
+                                <td>{{wl.program}}</td>
+                                <td>{{wl.chFname}}</td>
+                                <td>{{wl.chLname}}</td>
+                                <td>{{wl.chBirthday |date:"MM/dd/yyyy"}}</td>
+                                <td>{{wl.chGender}}</td>
+                                <td>{{wl.parentName}}</td>
+                                <td>{{wl.pPhone}}</td>
                                 <td>
                                     <button type="button"  class="btn btn-primary btn-xs" ng-click="removePerson(wl._id)" >Approve</button>
                                     <button  class="btn btn-danger btn-xs" ng-click="removePerson(wl._id)">Delete</button>
@@ -106,7 +105,7 @@
             </div>
 
 
-            <!-- notification -->
+            <!-- notification-->
             <div id="notification" class="tab-pane fade">
                 <div class="col-sm-8 col-sm-offset-2" >
                     <div class="page-header"><h4>Notification</h4></div>
