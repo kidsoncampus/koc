@@ -1,5 +1,6 @@
 /**
  * Created by LucyQiao on 5/25/16.
+ * Created fetchNotification by Shuangyi Li on 6/1/16.
  */
 app.controller('parentDashCtrl',function($scope,$http,$location,Auth){
     $scope.applications=[];
@@ -25,7 +26,19 @@ app.controller('parentDashCtrl',function($scope,$http,$location,Auth){
             });
     };
 
-
+    //fetch notifications
+   
+    var fetchNotifications = function (){
+        return $http.get('/getNotification').then(
+            function(response){
+                $scope.notifications = response.data;
+                console.log(response.data);
+            },
+            function(err){
+                console.error('Error while fetching notifications');
+            });
+    };
+    fetchNotifications();
 
 
 

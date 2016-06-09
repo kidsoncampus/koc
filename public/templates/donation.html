@@ -1,3 +1,111 @@
-<div>
+   <div class="container">
+            <div class='donation_admin'>
+               <h2>Donation Notice</h2>
+               <div class='donation_posting' style="width:720px;height:400px;
+                  color:{{donationEvent.color}};
+                  padding-left: {{donationEvent.textLeft}};
+                  padding-top:  {{donationEvent.textTop}};
+                  background-image: url('{{donationEvent.image}}'">
+               {{donationEvent.header}}<br><br>
+               {{donationEvent.line_1}}<br>
+               {{donationEvent.line_2}}<br>
+               {{donationEvent.line_3}}<br><br>
+               {{donationEvent.greeting}}<br>
+               {{donationEvent.author}}
+               </div>
+            </div>
+   </div>
+   <div class="container">
+      <form name="addForm" ng-submit="add()">
 
-<div>
+      <div ng-switch="currentType">
+         <div ng-switch-when="Money" class="donation_control">
+            <h4>Donate money with unit of tickets</h4>
+            One Ticket = $10 USD<br>
+                        Choose number of tickets to donate:
+            <input type="text"
+             placeholder="Quantity"
+             ng-model="newDonations.quantity"
+             required>
+         </div>
+         <div ng-switch-when="Food"  class="donation_control">
+            <h4>Donate food</h4>
+            We need biscuit, cheese, juice and etc.
+            Please watch the food expiration date. Food will be consumed by your kids.<br>
+            Specify the quantity to donate:
+            <input type="text"
+             placeholder="Quantity"
+             ng-model="newDonations.quantity"
+             required><br>
+            <br>
+            List the foods:
+            <textarea rows = 3 cols = 80
+             placeholder="Description"
+             ng-model="newDonations.description"
+             required></textarea>
+         </div>
+         <div ng-switch-when="Supplies"  class="donation_control">
+            <h4>Donate supplies</h4>
+            We need supplies such as paper plates, plastic utentils for the event.
+            Please list the supplies you want to donate.  They need be kid-safe products.<br>
+            Specify the quantity to donate:
+            <input type="text"
+             placeholder="Quantity"
+             ng-model="newDonations.quantity"
+             required><br>
+            <br>
+            List the supplies:
+            <textarea rows = 3 cols = 80
+             placeholder="Description"
+             ng-model="newDonations.description"
+             required></textarea>
+         </div>
+         <div ng-switch-when="Others"  class="donation_control">
+            <h4>Donate anything you wish</h4>
+            Anything you wish to donate, such as class room decorations,
+            toys or gifts (for kids attend the event).
+            Please detail the items you want to donate.<br>
+            Specify the quantity to donate:
+             <input type="text"
+             placeholder="Quantity"
+             ng-model="newDonations.quantity"
+             required><br>
+            <br>
+            List the donations:
+            <textarea rows = 3 cols = 80
+             placeholder="Description"
+             ng-model="newDonations.description"
+             required></textarea>
+         </div>
+      </div>
+      <div class="donation_container">
+      <label><B>Donation type:</B></label>
+      <select ng-model="currentType">
+         <option ng-repeat="option in donationTypes" value="{{option}}">{{option}}</option>
+      </select>
+
+      <label>for school event:</label>
+      <select ng-model="currentEvent" ng-change='switchEvent()'>
+         <option ng-repeat="option in donationEvents" value="{{option}}">{{option}}</option>
+      </select>
+      <input type="submit" value="Take my donation" ng-disabled="addForm.$invalid" >
+      </div>
+      </form>
+   </div>
+   <div class="donation_list container">
+   <h4>Donations from donor [{{username}}]</h4>
+   <table border=1>
+      <tr>
+      <th>Donation date</th>
+      <th>Event</td>
+      <th>Type</td>
+      <th>quantity</td>
+      <th>Description</td></tr>
+      <tr ng-repeat="donation in donations" ng-if="donation.email == email">
+      <td>{{donation.created | date:'M/dd/yyyy'}}
+      <td>{{donation.event}}</td>
+      <td>{{donation.type}}</td>
+      <td>{{donation.quantity}}</td>
+      <td>{{donation.description}}</td></tr>
+   </table>
+  </div>

@@ -13,19 +13,19 @@
     </div>
 </div>
 
-<div  ng-if="adminDash.loggedIn && userType===-1" class="management_container">
-        <h2>KOC Management</h2>
+<div  ng-if="adminDash.loggedIn && userType===-1" class="management_container container">
+        <h2>KOC Admin Managment</h2>
           <ul class="nav nav-tabs">
-            <li class="active"><a data-toggle="tab" href="#application">Application</a></li>
-            <li><a data-toggle="tab" href="#donation">Donation</a></li> 
-            <li><a data-toggle="tab" href="#notification">Notification</a></li>
+            <li class="active"><a data-toggle="tab" href="#adminDashboard">Application</a></li>
+            <li><a data-toggle="tab" href="#donationAdmin">Donation</a></li> 
+            <li><a data-toggle="tab" href="#notificationAdmin">Notification</a></li>
           </ul>
           <div class="tab-content">
           <!-- application -->
             <div id="application" class="tab-pane fade in active">
                 <div class="container-fluid">
                     <div class="row table-responsive">
-                        <div class="page-header"><h4>Application Management</h4></div>
+                        <br></br>
                         <table class="table table-bordered table-striped">
                             <tr>
                                 <th ng-click="sortData('priority')">Priority
@@ -130,6 +130,5 @@
             </div>
 
         </div>
-
  </div>
 

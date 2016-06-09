@@ -32,9 +32,19 @@ angular.module('app.routes',['ngRoute'])
             controller : 'adminCtrl',
             controllerAs:'adminDash'
         })
+        //route for notificationAdmin.html
+        .when ('/notificationAdmin', {
+            templateUrl : 'templates/notificationAdmin.html',
+            controller : 'notificationCtrl'
+        })        
         //route for donation.html
         .when ('/donation', {
             templateUrl : 'templates/donation.html',
+            controller : 'donationCtrl'
+        })
+        .when ('/donationAdmin', {
+            templateUrl : 'templates/donationAdmin.html',
+            controller : 'donationAdminCtrl'
         })
         //route for signup.html
         .when ('/signup', {

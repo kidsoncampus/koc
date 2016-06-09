@@ -1,13 +1,24 @@
 /**
  * Created by LucyQiao on 5/16/16.
+ * Created Notification API by Shuangyi Li on 6/1/16
  */
+
 //var bodyParser = require('body-parser'); 	// get body-parser
-var User       = require('../models/user');
-var ApplicationForm   = require('../models/applicationForm');
 var jwt        = require('jsonwebtoken');
 var config     = require('../../config');
-var applications  = require('./applicationFormAPI');
 
+//mongoose schemas
+var User       = require('../models/user');
+var ApplicationForm   = require('../models/applicationForm');
+var Donation        = require('../models/donation');
+var Event           = require('../models/event');
+var Notification = require('../models/notification');
+
+//REST API(s)
+var applications  = require('./applicationFormAPI');
+var donations    = require('./donationAPI');
+var events       = require('./eventAPI');
+var notification = require('./notificationAPI');
 
 // super secret for creating tokens
 var superSecret = config.secret;
@@ -153,6 +164,40 @@ module.exports=function(app,express){
     app.route('/adminDashboard')
         .get(applications.list);
 
+
+    //donation REST routes
+    app.route('/donations')
+       .post(donations.create)
+       .get(donations.list);
+      
+    app.route('/donations/:donationId')
+       .get(donations.read)
+       .put(donations.update)
+       .delete(donations.delete);
+   
+    app.param('donationId', donations.donationByID);
+
+    //post notification message
+    app.route('/notificationAdmin')
+        .post(notification.create);
+
+    //get notification message
+    app.route('/getNotification')
+        .get(notification.notificationList); 
+            
+    //event REST routes
+    app.route('/events')
+       .post(events.create)
+       .get(events.list);
+      
+    app.route('/events/:eventId')
+       .get(events.read)
+       .put(events.update)
+       .delete(events.delete);
+
+    app.param('eventId', events.eventByID);
+    
+    
     // api endpoint to get user information
     apiRouter.get('/me', function(req, res) {
         User.findOne({email: req.decoded.email}, function(err, user) {

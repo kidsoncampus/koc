@@ -1,25 +1,25 @@
+<div class="container">
+    
 <div class="row row-border">
     <div class="media">
         <div class="media-left">
             <img src="./images/profile.jpeg" class="media-object img-thumbnail" alt="profile">
             <h3>{{username}}</h3>
 
-            <div>
-               <a href="#/waitinglist" class="btn btn-primary">Start Application for your kids</a>
-            </div>
+
         </div>
 
         <div class="media-body">
             <div class="applicationStatus">
                 <h3 class="media-heading">Application Status</h3>
-                <table border=1>
+                <table  class="table table-hover">
                     <tr>
-                        <th>Submit Date</td>
-                        <th>Start Date</td>
-                        <th>Kid First Name</td>
-                        <th>Kid Last Name</td>
-                        <th>Program</td>
-                        <th>Application Status</td>
+                        <th>Submit Date</th>
+                        <th>Start Date</th>
+                        <th>Kid First Name</th>
+                        <th>Kid Last Name</th>
+                        <th>Program</th>
+                        <th>Application Status</th>
                     </tr>
                     <tr ng-repeat="x in applications">
                         <td>{{x.submitDate | date:'M/dd/yyyy'}}</td>
@@ -30,19 +30,31 @@
                         <td>{{x.status}}</td>
                     </tr>
                 </table>
+                <div>
+                    <a href="#/waitinglist" class="btn btn-info">Start Application for your kids</a>
+                    <a href="#/donation" class="btn btn-success">Start Donation for school</a>
+
+                </div>
                 <!--<p>Your application for {{applications.chLname}} is pending.</p>-->
             </div>
 
         </div>
     </div>
 </div>
-<div class="row row-border">
-    <div>
-        <h2>Notification</h2>
+
+<div class="row">
+    <h2>Notification</h2>
+    <div class="row panel panel-info" ng-repeat = "notification in notifications | orderBy: '-time' ">
+        
+        <div class="panel-heading">
+            <strong>{{notification.subject}}</strong>
+        </div>
+        <div class = "panel-body" > 
+            {{notification.message}}<br> </br>
+            {{notification.from}}</br>
+            {{notification.time}}</br>
+        </div>
     </div>
-    <div>
-        <P>Dear Room 1 Parent:
-            We are so happy to have upcoming PTA event on January 12, 2016. We have our official Room 1 leaders for the 2015/2016 PTA. Crystal (mom of Audrey) Christy (mom of Selah). You may remember that during the parent orientation you were asked to provide your information to share with other parents in the class. The below link will take you to a list that we hope you'll use to plan play dates, send information about community events for kids or to share information other parents may find useful. Plese review
-    </div>
+    </br>
 </div>
 </div>
