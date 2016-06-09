@@ -37,13 +37,8 @@ app.controller('wListController', function($scope,applicationService,$location,A
     $scope.status='';
 
 
-    //$scope.myRegex = /^[0-9]{3}-[0-9]{3}-[0-9]{4}$/;
     
-    $scope.applicationList = [
-        { applicationId: 1, Name: 'Dolphin & Shark (children 3 to 5 years of age)'},
-        { applicationId: 2, Name: 'Starfish & Sea Otter (children 6 weeks to 30 months of age)' },
-        { applicationId: 3, Name: 'Sea Turtle (children 2 to 3 years of age)' }
-    ];
+    $scope.applicationList = ['Dolphin & Shark','Starfish & Sea Otter','Sea Turtle'];
 
     var alumnis = [];
     var startYear = 1950;

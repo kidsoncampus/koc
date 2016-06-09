@@ -64,7 +64,7 @@
                 <div class="form-group">
                     <label class="control-label">Which program you want to apply for your child?</label>
                     <select  name="application" class="form-control" ng-model="program"
-                            ng-options="application.applicationId as application.Name for application in applicationList"
+                            ng-options="x for x in applicationList"
                             ng-required="true">
                         <option value=''>Select</option>
                     </select>

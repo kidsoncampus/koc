@@ -27,36 +27,51 @@ app.controller('adminCtrl',function($scope,$http,$location,Auth){
 
 
 
-    //$scope.removePerson = function(id){
-    //    console.log("list", $scope.wl);
-    //    var toDelPos = -1;
-    //    for (var i = 0; i < $scope.wl.length; i++) {
-    //        if ($scope.wl[i]._id == id) {
-    //            toDelPos = i;
-    //            break;
-    //        }
-    //    }
-    //    console.info("delPos", toDelPos);
-    //    var item = $scope.wl.splice(toDelPos, 1);
-    //    console.info("del", item);
-    //};
-
-
     $scope.classList = ["Dolphin & Shark", "Starfish & Sea Otter","Sea Turtle"];
 
 
     $scope.wls = [];
 
+    $scope.calculateAge = function(birthday) { // birthday is a date
+        var ageDifMs = Date.now() - new Date(birthday);
+        var ageDate = new Date(ageDifMs); // miliseconds from epoch
+        return Math.abs(ageDate.getUTCFullYear() - 1970);
+    };
+
     var fetchAllApplications=function(){
         return $http.get('/adminDashboard').then(
             function(response){
-                $scope.wls = response.data;
+                    $scope.wls = response.data;
             },function(errResponse){
                 console.error('Error while fetching notes');
             });
     };
 
     fetchAllApplications();
+
+
+    $scope.approve=function(id){
+        var updatedData={'status':"Approved"};
+        alert("The Application status is changed to Approved");
+
+        $http.put('/waitinglist/' +id,updatedData)
+            .then(fetchAllApplications);
+
+    };
+
+
+    $scope.deleteApplication=function(id){
+        return $http.delete('/waitinglist/' +id).then(
+            function(response){
+                $scope.wls = response.data;
+                location.reload();
+            },function(errResponse){
+                console.error('Error while deleting applications');
+            });
+    };
+
+
+
 
 
 

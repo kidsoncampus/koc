@@ -17,7 +17,7 @@ exports.create = function(req, res, next) {
 
 //get all applications info
 exports.list = function(req, res, next) {
-    ApplicationForm.find({}, function(err, applications) {
+    ApplicationForm.find({status:'Pending'}, function(err, applications) {
         if (err) {
             return next(err);
         } else {
@@ -36,6 +36,26 @@ exports.applicationByID = function(req, res, next, id) {
         } else {
             req.application = application;
             next();
+        }
+    });
+};
+
+exports.update = function(req, res, next) {
+    ApplicationForm.findByIdAndUpdate(req.application.id, req.body, function(err, application) {
+        if (err) {
+            return next(err);
+        } else {
+            res.json(application);
+        }
+    });
+};
+
+exports.delete=function(req,res,next){
+    req.application.remove(function(err){
+        if(err){
+            return next(err);
+        }else{
+            res.json(req.application);
         }
     });
 };

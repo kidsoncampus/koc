@@ -148,7 +148,9 @@ module.exports=function(app,express){
 
 
     app.route('/waitinglist/:applicationId')
-        .get(applications.read);
+        .get(applications.read)
+        .put(applications.update)
+        .delete(applications.delete);
 
     app.param('applicationId', applications.applicationByID);
 

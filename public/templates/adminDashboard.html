@@ -28,40 +28,40 @@
                         <br></br>
                         <table class="table table-bordered table-striped">
                             <tr>
-                                <th ng-click="sortData('priority')">Priority
-                                    <div ng-class="getSortClass('priority')"></div>
+                                <th ng-click="sortData('priorityLevel1')">Priority
+                                    <div ng-class="getSortClass('priorityLevel1')"></div>
                                 </th>
-                                <th ng-click="sortData('type')">Type
-                                    <div ng-class="getSortClass('type')"></div>
+                                <th ng-click="sortData('priorityLevel2')">Type
+                                    <div ng-class="getSortClass('priorityLevel2')"></div>
                                 </th>
-                                <th ng-click="sortData('submittedDate')">Date of Submit
-                                    <div ng-class="getSortClass('submittedDate')"></div>
+                                <th ng-click="sortData('submitDate')">Date of Submit
+                                    <div ng-class="getSortClass('submitDate')"></div>
                                 </th>
-                                <th ng-click="sortData('dateOfEnroll')">Date of Enroll
-                                    <div ng-class="getSortClass('dateOfEnroll')"></div>
+                                <th ng-click="sortData('perferredStartDate')">Date of Enroll
+                                    <div ng-class="getSortClass('perferredStartDate')"></div>
                                 </th>
-                                <th ng-click="sortData('class')">Class
-                                    <div ng-class="getSortClass('class')"></div>
+                                <th ng-click="sortData('program')">Class
+                                    <div ng-class="getSortClass('program')"></div>
                                 </th>
-                                <th ng-click="sortData('kfname')">
+                                <th ng-click="sortData('chFname')">
                                     Kids FirstName
-                                    <div ng-class="getSortClass('kfname')"></div>
+                                    <div ng-class="getSortClass('chFname')"></div>
                                 </th>
-                                <th ng-click="sortData('klname')">
+                                <th ng-click="sortData('chLname')">
                                     Kids LastName
-                                    <div ng-class="getSortClass('klname')"></div>
+                                    <div ng-class="getSortClass('chLname')"></div>
                                 </th>
-                                <th ng-click="sortData('age')">Age
-                                    <div ng-class="getSortClass('age')"></div>
+                                <th ng-click="sortData('chBirthday')">Age
+                                    <div ng-class="getSortClass('chBirthday')"></div>
                                 </th>
-                                <th ng-click="sortData('sex')">Sex
-                                    <div ng-class="getSortClass('sex')"></div>
+                                <th ng-click="sortData('chGender')">Sex
+                                    <div ng-class="getSortClass('chGender')"></div>
                                 </th>
-                                <th ng-click="sortData('pname')">Parents Name
-                                    <div ng-class="getSortClass('pname')"></div>
+                                <th ng-click="sortData('parentName')">Parents Name
+                                    <div ng-class="getSortClass('parentName')"></div>
                                 </th>
-                                <th ng-click="sortData('pnumber')">Phone Number
-                                    <div ng-class="getSortClass('pnumber')"></div>
+                                <th ng-click="sortData('pPhone')">Phone Number
+                                    <div ng-class="getSortClass('pPhone')"></div>
                                 </th>
                                 <th ng-click="sortData('decision')">Decision
                                     <div ng-class="getSortClass('decision')"></div>
@@ -88,13 +88,13 @@
                                 <td>{{wl.program}}</td>
                                 <td>{{wl.chFname}}</td>
                                 <td>{{wl.chLname}}</td>
-                                <td>{{wl.chBirthday |date:"MM/dd/yyyy"}}</td>
+                                <td>{{calculateAge(wl.chBirthday)}}</td>
                                 <td>{{wl.chGender}}</td>
                                 <td>{{wl.parentName}}</td>
                                 <td>{{wl.pPhone}}</td>
                                 <td>
-                                    <button type="button"  class="btn btn-primary btn-xs" ng-click="removePerson(wl._id)" >Approve</button>
-                                    <button  class="btn btn-danger btn-xs" ng-click="removePerson(wl._id)">Delete</button>
+                                    <button type="button"  class="btn btn-primary btn-xs" ng-click="approve(wl._id)" >Approve</button>
+                                    <button  class="btn btn-danger btn-xs" ng-click="deleteApplication(wl._id)">Delete</button>
                                 </td>
                             </tr>   
                         </table>
