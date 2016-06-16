@@ -1,3 +1,7 @@
+/*
+ * Created by Shuangyi Li on 12/10/15;
+ */
+
 /*========================
    General
   ========================*/
@@ -15,6 +19,25 @@
 	font-family: 'pt Sans',sans-serif;
 	color:white;
 }
+.blueWord{
+	color: #77B7DB;
+}
+.greenWord{
+	color:#9CD2A5;
+}
+.pinkWord{
+	color: #FEBCBB;
+}
+.redWord{
+	color: #FD8383;
+}
+.deepGreenWord{
+	color:#00CA6B;
+}
+.yellowWord{
+	color:#FAEF92;
+}
+
 /*========================
   homepage
   ========================*/
@@ -234,4 +257,46 @@
 	display:block;
 	margin:0 auto;
 	width:20%;
+}
+
+/*===========================================
+    		parentDashboard.html
+  ===========================================*/
+.first-heading{
+	font-family: 'pt Sans',sans-serif;
+	font-size: 25px;
+	font-weight: bold;
+}
+#notification-bg{
+	background-color: #77B7DB;
+}
+#notification{
+	border-bottom: 8px solid #FEBCBB;
+}
+.panel-info{
+	background-color: #77B7DB;
+	color:white;
+	font-family: 'pt Sans',sans-serif;
+	font-size: 16px;
+}
+
+/*===========================================
+    		donation.html
+  ===========================================*/
+#donation-title{
+	color:white;
+	padding-top: 20px;
+	padding-bottom: 15px;
+	font-size: 30px;
+}
+
+.donate-title{
+	color:white;
+	padding-bottom:20px;	
+}
+.ticket-description{
+	color:white;
+	font-family: 'pt Sans',sans-serif;
+	font-size: 20px;
+	font-weight: bold;
 }

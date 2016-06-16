@@ -1,60 +1,66 @@
-<div class="container">
-    
-<div class="row row-border">
-    <div class="media">
-        <div class="media-left">
-            <img src="./images/profile.jpeg" class="media-object img-thumbnail" alt="profile">
-            <h3>{{username}}</h3>
-
-
-        </div>
-
-        <div class="media-body">
-            <div class="applicationStatus">
-                <h3 class="media-heading">Application Status</h3>
-                <table  class="table table-hover">
-                    <tr>
-                        <th>Submit Date</th>
-                        <th>Start Date</th>
-                        <th>Kid First Name</th>
-                        <th>Kid Last Name</th>
-                        <th>Program</th>
-                        <th>Application Status</th>
-                    </tr>
-                    <tr ng-repeat="x in applications">
-                        <td>{{x.submitDate | date:'M/dd/yyyy'}}</td>
-                        <td>{{x.perferredStartDate | date:'M/dd/yyyy'}}</td>
-                        <td>{{x.chFname}}</td>
-                        <td>{{x.chLname}}</td>
-                        <td>{{x.program}}</td>
-                        <td>{{x.status}}</td>
-                    </tr>
-                </table>
-                <div>
-                    <a href="#/waitinglist" class="btn btn-info">Start Application for your kids</a>
-                    <a href="#/donation" class="btn btn-success">Start Donation for school</a>
-
+<br>
+<div class="container"> 
+    <div class="row">
+        <div class="media">
+            <div class="media-left">
+                <img src="./images/profile.jpeg" class="media-object img-thumbnail" alt="profile">
+                <div class="col-sm-10">
+                    <h3 class="text-center first-heading redWord">{{username}}</h3>   
                 </div>
-                <!--<p>Your application for {{applications.chLname}} is pending.</p>-->
             </div>
 
-        </div>
-    </div>
-</div>
+            <div class="media-body">
+                <div class="applicationStatus">
+                    <h3 class="media-heading text-center first-heading redWord">Application Status</h3>
+                    <table class="table" border=0>
+                        <tr>
+                            <th>Submit Date</th>
+                            <th>Start Date</th>
+                            <th>Kid First Name</th>
+                            <th>Kid Last Name</th>
+                            <th>Program</th>
+                            <th>Application Status</th>
+                        </tr>
+                        <tr ng-repeat="x in applications">
+                            <td>{{x.submitDate | date:'M/dd/yyyy'}}</td>
+                            <td>{{x.perferredStartDate | date:'M/dd/yyyy'}}</td>
+                            <td>{{x.chFname}}</td>
+                            <td>{{x.chLname}}</td>
+                            <td>{{x.program}}</td>
+                            <td>{{x.status}}</td>
+                        </tr>
+                    </table>
+                    <div>
+                        <a href="#/waitinglist" class="btn btn-info">Start Application for your kids</a>
+                        <a href="#/donation" class="btn btn-success">Start Donation for school</a>
 
-<div class="row">
-    <h2>Notification</h2>
-    <div class="row panel panel-info" ng-repeat = "notification in notifications | orderBy: '-time' ">
-        
-        <div class="panel-heading">
-            <strong>{{notification.subject}}</strong>
-        </div>
-        <div class = "panel-body" > 
-            {{notification.message}}<br> </br>
-            {{notification.from}}</br>
-            {{notification.time}}</br>
+                    </div>
+                    <!--<p>Your application for {{applications.chLname}} is pending.</p>-->
+                </div>
+
+            </div>
         </div>
     </div>
-    </br>
-</div>
+    
+    <div  id="notification">
+        <h2 class="text-center first-heading blueWord">Notification</h2>
+    </div>
+    <br>
+    <div class="row" >
+        
+  
+        <div class="row panel panel-info" ng-repeat = "notification in notifications | orderBy: '-time' ">
+            
+            <div class="panel-heading">
+                <strong>{{notification.subject}}</strong>
+            </div>
+            <div class = "panel-body" > 
+                {{notification.message}}<br> </br>
+                {{notification.from}}</br>
+                {{notification.time}}</br>
+            </div>
+        </div>
+        </br></br>
+        </br></br>
+    </div>
 </div>

@@ -6,27 +6,44 @@
         <li class="active"><a data-toggle="tab" href="#notificationAdmin">Notification</a></li>
 	</ul>
 	<div class="tab-content">
-		<div class="container">
-			<form name="notification">
-				<div class="form-group">
-					<label for="subject">Subject</label>
-					<input type="text" name="subject" class="form-control" ng-model = "subject">
+		<br></br>
+	
+		<form name="notification" class="form-horizontal">
+			<div class="form-group">
+				<label for="subject" class="col-sm-2 control-label">Subject</label>
+				<div class="col-sm-10">
+					<input type="text" name="subject" class="form-control" ng-model = "subject">	
 				</div>
-				<div class="form-group">
-					<label for="nFrom">From</label>
+			</div>
+
+			<div class="form-group">
+				<label for="nFrom" class="col-sm-2 control-label">From</label>
+				<div class="col-sm-10">
 					<input type="text" name="nFrom" class="form-control" ng-model = "nFrom">
 				</div>
-				<div class="form-group">
-					<label for="msg">Message</label>
-					<textarea name="msg" class="form-control" ng-model = "msg" rows="5"></textarea>
+			</div>
+
+			<div class="form-group">
+				<label for="msg" class="col-sm-2 control-label">Message</label>
+				<div class="col-sm-10">
+					<textarea name="msg" class="form-control" ng-model = "msg" rows="8"></textarea>
 				</div>
-				<div class="form-group">
-					<label for="nTime">Date</label>
+			</div>
+
+			<div class="form-group">
+				<label for="nTime" class="col-sm-2 control-label">Date</label>
+				<div class="col-sm-10">
 					<input type="text" name="nTime" ng-model="nTime" class="form-control">
 				</div>
-				<button class="btn-info" name="sendNotification" ng-click = "sendNotification()">Send</button>
-			</form>	
-		</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button class="btn btn-info" name="sendNotification" ng-click = "sendNotification()">Send</button>
+				</div>
+			</div>
+		</form>	
+	
 		
 	</div>
 </div>
+<br></br>

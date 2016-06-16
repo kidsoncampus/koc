@@ -5,7 +5,7 @@
            <li class="active"><a data-toggle="tab" href="#donationAdmin">Donation</a></li> 
            <li><a data-toggle="tab" href="#notificationAdmin">Notification</a></li>
       </ul>     
-      <div class='donation_admin tab-content'>
+      <div class='tab-content'>
       <br></br>
        
          <table><tr>
@@ -18,7 +18,7 @@
              </select></td>
          </tr></table>
 
-         <div class='donation_posting' style="width:720px;height:400px;
+         <div class='donation_posting' style="width:720px;height:200px;
             color:{{donationEvent.color}};
             padding-left: {{donationEvent.textLeft}};
             padding-top:  {{donationEvent.textTop}};
@@ -33,7 +33,7 @@
       </div>   
    </div>
 
-   <div class='donation_admin container'>
+   <div class='container'>
 
    <div ng-switch="mode" class="container">
       <div ng-switch-when="Create">
@@ -117,26 +117,26 @@
       </select>
    </div>
    <div  class="donation_list container">
-   <h4>List donations [{{donations.length}} entries]</h4>
-   <table border=1>
-      <tr>
-      <th>Donation date</th>
-      <th>First name</th>
-      <th>Last name</th>
-      <th>E-mail</th>
-      <th>Event</th>
-      <th>Type</th>
-      <th>Quantity</th>
-      <th>Description</th></tr>
-      <tr ng-repeat="donation in donations">
-      <td>{{donation.created | date:'M/dd/yyyy'}}
-      <td>{{donation.fName}}</td>
-      <td>{{donation.lName}}</td>
-      <td>{{donation.email}}</td>
-      <td>{{donation.event}}</td>
-      <td>{{donation.type}}</td>
-      <td>{{donation.quantity}}</td>
-      <td>{{donation.description}}</td></tr>
-   </table>
-
+      <h4>List donations [{{donations.length}} entries]</h4>
+      <table border=1>
+         <tr>
+         <th>Donation date</th>
+         <th>First name</th>
+         <th>Last name</th>
+         <th>E-mail</th>
+         <th>Event</th>
+         <th>Type</th>
+         <th>Quantity</th>
+         <th>Description</th></tr>
+         <tr ng-repeat="donation in donations">
+         <td>{{donation.created | date:'M/dd/yyyy'}}
+         <td>{{donation.fName}}</td>
+         <td>{{donation.lName}}</td>
+         <td>{{donation.email}}</td>
+         <td>{{donation.event}}</td>
+         <td>{{donation.type}}</td>
+         <td>{{donation.quantity}}</td>
+         <td>{{donation.description}}</td></tr>
+      </table>
    </div>
+   <br></br>
