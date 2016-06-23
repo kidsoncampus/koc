@@ -23,9 +23,9 @@ app.controller('wListController', function($scope,applicationService,$location,A
     $scope.dt='';
     $scope.chFname='';
     $scope.chLname='';
-    $scope.chGender='';
+    $scope.chGender='unknown';
     $scope.b_dt='';
-    $scope.program='';
+    $scope.program=null;
     $scope.eFname='';
     $scope.eLname='';
     $scope.ePhone='';
@@ -33,12 +33,17 @@ app.controller('wListController', function($scope,applicationService,$location,A
     $scope.eAddress='';
     $scope.p_dt='';
     $scope.priorityLevel1= null;
-    $scope.priorityLevel2= "";
+    $scope.priorityLevel2= null;
     $scope.status='';
 
+    $scope.myRegex = /^[0-9]{10}$/;
 
-    
-    $scope.applicationList = ['Dolphin & Shark','Starfish & Sea Otter','Sea Turtle'];
+
+    $scope.applicationList = [
+        {name: 'Dolphin & Shark', description: "children 3 through 5 years of age"},
+        {name: 'Starfish & Sea Otter', description: "children 6 weeks through 30 months of age"},
+        {name: 'Sea Turtle', description: "children 2 to 3 years of age"}
+    ];
 
     var alumnis = [];
     var startYear = 1950;
