@@ -34,7 +34,7 @@ app.controller('wListController', function($scope,applicationService,$location,A
     $scope.p_dt='';
     $scope.priorityLevel1= null;
     $scope.priorityLevel2= null;
-    $scope.status='';
+    $scope.status="Pending";
 
     $scope.myRegex = /^[0-9]{10}$/;
 
@@ -164,7 +164,7 @@ app.controller('wListController', function($scope,applicationService,$location,A
                              'chLname':$scope.chLname,
                              'chGender':$scope.chGender,
                              'chBirthday':$scope.b_dt,
-                             'program':$scope.program,
+                             'program':$scope.program.name,
                              'eFname':$scope.eFname,
                              'eLname':$scope.eLname,
                              'ePhone':$scope.ePhone,
@@ -174,6 +174,7 @@ app.controller('wListController', function($scope,applicationService,$location,A
                              'priorityLevel1':$scope.priorityLevel1.priority,
                              'priorityLevel2':$scope.priorityLevel2,
                              'parentName':$scope.parentName,
+                             'status': $scope.status,
                              'pPhone':$scope.pPhone
 
         };

@@ -6,7 +6,7 @@
             <small>Santa Clara University Child Development Center</small>
         </div>
 
-        <form name="userForm">
+        <form name="userForm" novalidate>
 
             <!--today's date-->
             <div class="form-group">
@@ -150,7 +150,7 @@
 
             <div ng-show="priorityLevel1 != null">
                 <div class="form-group" ng-class="{ 'has-error' : userForm.priorityLevel2.$invalid && (userForm.priorityLevel2.$dirty)}">
-                    <select class="form-control" name="priorityLevel2" ng-model="priorityLevel2"
+                    <select class="form-control" ng-model="priorityLevel2"
                             ng-options="x for x in priorityLevel1.types"
                             ng-required="true">
                         <option value=''>Select</option>
@@ -168,7 +168,7 @@
             <!--{{priorityLevel2}}-->
 
             <div>
-                <button type="submit" class="btn btn-primary"  ng-click="!userForm.$invalid && submitForm()">Submit</button>
+                <button type="submit" class="btn btn-primary" ng-click="!userForm.$invalid && submitForm()">Submit</button>
             </div>
 
         </form>
