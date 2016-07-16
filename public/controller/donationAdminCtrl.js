@@ -1,24 +1,27 @@
+/**
+ *Created by Lixing Zhao on 05/28/16 
+ */
+
 app.controller('donationAdminCtrl', function($scope, $http, $location, $window, Auth) {
    var self = this;
        self.donationEvent = {
                      name: 'no-event-now',
                      status: 'active',
-                     header: 'Dear Parents',
-                     greeting: 'Thanks',
-                     author: 'KOC Admin',
-                     line_1: 'At this moment, we do not have any event that requires special',
-                     line_2: 'donation.  However, any donation for general use is highly',
-                     line_3: 'appreciated.',
-                     color: '#000000',
-                     textLeft: '200px',
-                     textTop: '50px',
-                     image: '../images/events/christmasMessage.png',
+                     message: 'no event is defined'
+                     };
+
+       self.donationType = {
+                     name: 'no-type-now',
+                     status: 'available',
+                     information: 'no custom donation type is defined'
                      };
 
    $scope.donationEvent = self.donationEvent;
+   $scope.donationType  = self.donationType;
+
    $scope.statusMessage0 = '';
    $scope.statusMessage1 = '';
-   $scope.mode =  "Edit";
+   $scope.eventMode =  "Edit";
 
    //user authentication logic
 
@@ -34,18 +37,20 @@ app.controller('donationAdminCtrl', function($scope, $http, $location, $window, 
       $location.path("/login");
    };
 
-   //the text color selection box
-   $scope.currentColor = $scope.donationEvent.color;
-   $scope.colors = [{name:'Black',   value:'#000000'},
-                    {name:'Red',     value:'#ff0000'},
-                    {name:'Blue',    value:'#0000ff'},
-                    {name:'Navy',    value:'#000080'},
-                    {name:'Green',   value:'#228b22'},
-                    {name:'Magenta', value:'#ff00ff'},
-                    {name:'White',   value:'#ffffff'}];
+   $scope.manageMode = 'event';
+   $scope.toggleMode = "type";
+   $scope.toggleManageMode = function() {
+      var temp = $scope.manageMode;
+      $scope.manageMode = $scope.toggleMode;
+      $scope.toggleMode = temp;
+   };
 
-   $scope.currentNotice = '';                   //the selected value
-   $scope.donationNotices = [];                 //the options for the 'switch notice' selection      
+   $scope.activeEventName = '';
+
+   $scope.currentNotice   = '';                 //the selected value
+   $scope.donationNotices = [];                 //the options for the 'switch notice' selection
+   $scope.currentDType    = '';
+   $scope.dTypeArray      = [];      
 
    // three dropdown controls for filter the donation table
    $scope.currentType = '--list all--';
@@ -58,6 +63,7 @@ app.controller('donationAdminCtrl', function($scope, $http, $location, $window, 
    $scope.donationParents = ['--list all--'];
 
    $scope.donations = [];     // all the donations fetched from DB
+   $scope.dTypes = [];        // all the donation type from DB
    $scope.events = [];        // all the events fetched from DB
 
    // filter used for select donations for table display
@@ -97,14 +103,14 @@ app.controller('donationAdminCtrl', function($scope, $http, $location, $window, 
                $scope.donations.push(entry);
             }
          })
-         $scope.donations.sort().reverse();
+//         $scope.donations.sort().reverse();
       }, function(errResponse) {
             console.error('Error while fetching donations');
          });
       };
 
    // fetch all events from the DB. creates data for switch event dropdown control
-   // handle the case when there has not event entry in the DB 
+   // handle the case when there has no event entry in the DB 
    var fetchEvents = function() {
       return $http.get('/events').then(
       function(response) {
@@ -114,14 +120,19 @@ app.controller('donationAdminCtrl', function($scope, $http, $location, $window, 
             $scope.currentNotice = $scope.donationNotices[0];
             $scope.donationEvent = self.donationEvent;
          } else {
-            if (($scope.mode == 'Edit') && ($scope.donationNotices.length != 0)) {
+            for (var i = 0; i < $scope.events.length; i++) {
+               if ($scope.events[i].status == 'active') {
+                  $scope.activeEventName = $scope.events[i].name;
+               }
+            }
+            if (($scope.eventMode == 'Edit') && ($scope.donationNotices.length != 0)) {
                return;  /****/
             }
 
             $scope.donationNotices = [];
             for (var i = 0; i < $scope.events.length; i++) {
                $scope.donationNotices.push($scope.events[i].name);
-               $scope.currentNotice  = $scope.events[i].name; 
+               $scope.currentNotice  = $scope.events[i].name;
                $scope.donationEvent  = $scope.events[i];
                self.donationEvent = $scope.events[i];
             }
@@ -133,19 +144,68 @@ app.controller('donationAdminCtrl', function($scope, $http, $location, $window, 
          });
       };
 
+   // fetch all donation types from the DB. creates data for dType dropdown control
+   // handle the case when there has no entry in the DB 
+   var fetchDTypes = function() {
+      return $http.get('/dTypes').then(
+      function(response) {
+         $scope.activeDTypes = ['Money'];
+         $scope.dTypes = response.data;
+         if ($scope.dTypes.length == 0) {
+            $scope.dTypeArray   = ['No-donation-type'];
+            $scope.currentDType = $scope.dTypeArray[0];
+            $scope.donationType = self.donationType;
+         } else {
+
+            for (var i = 0; i < $scope.dTypes.length; i++) {
+               if ($scope.dTypes[i].status == 'active') {
+                  $scope.activeDTypes.push($scope.dTypes[i].name);
+               }
+            }
+            if (($scope.dTypeMode == 'Edit') && ($scope.dTypeArray.length != 0)) {
+               return;  /****/
+            }
+
+            $scope.dTypeArray = [];
+            for (var i = 0; i < $scope.dTypes.length; i++) {
+               $scope.dTypeArray.push($scope.dTypes[i].name);
+               $scope.currentDType  = $scope.dTypes[i].name;
+               $scope.donationType  = $scope.dTypes[i];
+               setupCheckBox();
+               self.donationType = $scope.dTypes[i];
+            }
+         }
+     }, function(errResponse) {
+            console.error('Error while fetching donation types');
+         });
+      };
+
    fetchDonations();    //the function call to get donations from DB
+   fetchDTypes();       //the function call to get donation type from DB
    fetchEvents();       //the function calk to get events from DB
 
    // change to view different event
-   $scope.changeEvent = function() {
+   $scope.changeNotice = function() {
       for (var i = 0; i < $scope.events.length; i++) {
          if ($scope.events[i].name == $scope.currentNotice) {
-            $scope.donationEvent  = $scope.events[i];
-            self.donationEvent = $scope.events[i]; 
+            $scope.donationEvent = $scope.events[i];
+              self.donationEvent = $scope.events[i]; 
             $scope.textChanged();  
          }
       }
    };
+
+   $scope.changeDType = function() {
+      for (var i = 0; i < $scope.dTypes.length; i++) {
+         if ($scope.dTypes[i].name == $scope.currentDType) {
+            $scope.donationType = $scope.dTypes[i];
+            setupCheckBox();
+            self.donationType = $scope.dTypes[i]; 
+            $scope.textChanged();  
+         }
+      }
+   };
+
 
    // clear the status message
    $scope.textChanged = function() {
@@ -155,6 +215,7 @@ app.controller('donationAdminCtrl', function($scope, $http, $location, $window, 
 
    // the functions for dropdown control's ng-change
    $scope.getType = function() {
+      console.log($scope.currentType);
       fetchDonations();
    };
 
@@ -171,31 +232,19 @@ app.controller('donationAdminCtrl', function($scope, $http, $location, $window, 
    };
 
    // enter the 'create' mode
-   $scope.create = function() {
-      $scope.mode = "Create";
+   $scope.eventCreate = function() {
+      $scope.eventMode = "Create";
       $scope.donationEvent = {
                      name: '',
                      status: 'ready',
-                     header: '',
-                     greeting: '',
-                     author: '',
-                     line_1: '',
-                     line_2: '',
-                     line_3: '',
-                     color: '#000000',
-                     textLeft: '200px',
-                     textTop: '50px',
-                     image: '../images/events/christmasMessage.png',
+                     message: ''
                      };
-
-      $scope.currentColor = $scope.donationEvent.color;
    };
 
    // enter the 'edit' mode
-   $scope.edit = function() {
-      $scope.mode = "Edit";
+   $scope.eventEdit = function() {
+      $scope.eventMode = "Edit";
       $scope.donationEvent = self.donationEvent;
-      $scope.currentColor = $scope.donationEvent.color;
    };
 
    // need all fields be filled for creating new event entry
@@ -211,7 +260,7 @@ app.controller('donationAdminCtrl', function($scope, $http, $location, $window, 
    };
    
    // create new event entry in DB
-   $scope.add = function() {
+   $scope.eventAdd = function() {
       var badList = validatedEvent();
       if (badList.length != 0) {
          $scope.statusMessage0 = "missing [" + badList + "]";
@@ -225,15 +274,15 @@ app.controller('donationAdminCtrl', function($scope, $http, $location, $window, 
       $http.post('/events', newData)
          .then(fetchEvents) //add to currentNotice
          .then(function(response) {
-             $scope.edit(); //put into edit mode after new event added
+             $scope.eventEdit(); //put into edit mode after new event added
              $scope.statusMessage1 = 'database entry created';
          });
    };
 
   // update existing event entry in DB
-   $scope.update = function() {
-      if ($scope.donationEvent.name == 'no-event-now') {
-         $scope.create();
+   $scope.eventUpdate = function() {
+       if ($scope.donationEvent.name == 'no-event-now') {
+         $scope.eventCreate();
          $scope.statusMessage0 = 'default one: update is not possible';
          return;
       }
@@ -252,11 +301,12 @@ app.controller('donationAdminCtrl', function($scope, $http, $location, $window, 
          }
       }
       fetchEvents();
+      $scope.activeEventName = $scope.currentNotice;
       $scope.statusMessage1 = "update done. This is the 'current-active' event";
    };
 
    // delete entry in the DB
-   $scope.delete = function() {
+   $scope.eventDelete = function() {
       if ($scope.currentNotice == 'No-event') {
          return;
       }
@@ -265,16 +315,112 @@ app.controller('donationAdminCtrl', function($scope, $http, $location, $window, 
          $scope.statusMessage1 = 'can not delete active event';
          return;
       }
-      $scope.mode = 'Delete';
+      $scope.eventMode = 'Delete';
       $http.delete('/events/' + $scope.donationEvent._id) 
          .then(fetchEvents) 
          .then(function(response) {
              if ($scope.currentNotice == 'No-event') {
-                $scope.create();
+                $scope.eventCreate();
              }
              else {
-                $scope.edit();
+                $scope.eventEdit();
               }
          });
    };
+
+   //************************************************************************
+
+   $scope.dTypeMode = "Edit";
+   $scope.cbValue   = true;
+
+   var setupCheckBox = function() {
+      if ($scope.donationType.status == 'active') {
+         $scope.cbValue = true;
+      } else {
+         $scope.cbValue = false;
+      }
+   };
+
+   $scope.dTypeCreate = function() {
+      $scope.dTypeMode = "Create";
+      $scope.donationType = {
+                     name: '',
+                     status: 'active',
+                     information: ''
+                     };
+   };
+
+   $scope.dTypeEdit = function() {
+      $scope.dTypeMode = "Edit";
+      $scope.donationType = self.donationType;
+      setupCheckBox();
+   };
+
+      // create new event entry in DB
+   $scope.dTypeAdd = function() {
+      var newData = $scope.donationType;
+      $http.post('/dTypes', newData)
+         .then(fetchDTypes) //add to currentNotice
+         .then(function(response) {
+             $scope.dTypeEdit(); //put into edit mode after new type added
+             $scope.statusMessage1 = 'database entry created';
+         });
+   };
+
+   $scope.dTypeUpdate = function() {
+      if ($scope.donationType.name == 'no-type-now') {
+         $scope.dTypeCreate();
+         $scope.statusMessage0 = 'default one: update is not possible';
+         return;
+      }
+
+      if ($scope.cbValue) {     // mark it as current 'active'
+         $scope.donationType.status = 'active';
+      } else {
+         $scope.donationType.status = 'available';
+      }
+      $http.put('/dTypes/' + $scope.donationType._id, $scope.donationType) 
+         .then(function(response) {});
+      
+      fetchDTypes();
+      $scope.statusMessage1 = 'database entry updated';
+   };
+
+   $scope.dTypeDelete = function() {
+
+   };
+
+   $scope.dTypeDelete = function() {
+      if ($scope.activeDTypes.length == 1) {
+         return;
+      }
+      $scope.dTypeMode = 'Delete';
+      $http.delete('/dTypes/' + $scope.donationType._id) 
+         .then(fetchDTypes) 
+         .then(function(response) {
+             if ($scope.activeDTypes.length == 1) {
+                $scope.dTypeCreate();
+             }
+             else {
+                $scope.dTypeEdit();
+              }
+         });
+   };
+
+   // the following code is for sorting the table
+
+   $scope.sortColumn = 'created';
+   $scope.sortData = function(column) {
+      $scope.reverseSort = ($scope.sortColumn == column) ? !$scope.reverseSort : false;
+      $scope.sortColumn = column;
+   };
+
+   $scope.getSortClass = function(column) {
+      if ($scope.sortColumn == column) {
+         return $scope.reverseSort ? 'arrow-down' : 'arrow-up';
+      }
+      return '';
+   };
 });
+
+  

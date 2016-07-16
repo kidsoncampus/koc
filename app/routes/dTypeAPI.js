@@ -1,62 +1,62 @@
 /**
- *Created by Lixing Zhao on 05/18/16 
+ *Created by Lixing Zhao on 07/04/16 
  */
 
-var Event = require('mongoose').model('Event');
+var DType = require('mongoose').model('DType');
 
 exports.create = function(req, res, next) {
-   var event = new Event(req.body);
+   var dType = new DType(req.body);
    
-   event.save(function(err) {
+   dType.save(function(err) {
       if (err) {
          return next(err);
       } else {
-         res.json(event);
+         res.json(dType);
       }
    });
 };
 
 exports.list = function(req, res, next) {
-   Event.find({}, function(err, events) {
+   DType.find({}, function(err, dTypes) {
       if (err) {
          return next(err);
       } else {
-         res.json(events);
+         res.json(dTypes);
       }
    });
 };
 
 exports.read = function(req, res) {
-   res.json(req.event);
+   res.json(req.dType);
 };
 
-exports.eventByID = function(req, res, next, id) {
-   Event.findOne({ _id: id}, function(err, event) {
+exports.dTypeByID = function(req, res, next, id) {
+   DType.findOne({ _id: id}, function(err, dType) {
       if (err) {
          return next(err);
       } else {
-         req.event = event;
+         req.dType = dType;
          next();
       }   
    });
 };
 
 exports.update = function(req, res, next) {
-   Event.findByIdAndUpdate(req.event.id, req.body, function(err, event) {
+   DType.findByIdAndUpdate(req.dType.id, req.body, function(err, dType) {
       if (err) {
          return next(err);
       } else {
-         res.json(event);
+         res.json(dType);
       }
    });
 };
 
 exports.delete = function(req, res, next) {
-   req.event.remove(function(err) {
+   req.dType.remove(function(err) {
       if (err) {
          return next(err);
       } else {
-         res.json(req.event);
+         res.json(req.dType);
       }
    });
 };

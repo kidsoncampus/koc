@@ -4,99 +4,83 @@
            <li><a data-toggle="tab" href="#adminDashboard">Application</a></li>
            <li class="active"><a data-toggle="tab" href="#donationAdmin">Donation</a></li> 
            <li><a data-toggle="tab" href="#notificationAdmin">Notification</a></li>
-      </ul>     
+      </ul>
+    
       <div class='tab-content'>
-      <br></br>
-       
-         <table><tr>
-            <td><input type='button' value='Create event notice' ng-click='create()'></td>
-            <td><input type='button' value='Edit event notice'   ng-click='edit()'  ></td>
-            <td><input type='button' value='Remove event notice' ng-click='delete()'></td>
+      <br>
+      <strong>Active event: [{{activeEventName}}]</strong><br>
+      <strong>Active donation types: [{{activeDTypes.toString()}}]</strong><br><br>
+      <div class="donation_container">
+         <input type='button' value='Manage donation {{toggleMode}}'  ng-click='toggleManageMode()'>
+         click the button to manage donation {{toggleMode}}
+      </div>
+
+   <div ng-show="manageMode == 'event'">
+      <table><tr>
+         <td><label><strong>Manage event notice</strong></label></td>
+         <td><input type='button' value='Create' ng-click='eventCreate()'></td>
+         <td><input type='button' value='Edit'   ng-click='eventEdit()'  ></td>
+         <td><input type='button' value='Remove' ng-click='eventDelete()'></td>
          <td><b>switch event notice:</b></td>
-         <td><select ng-model="currentNotice" ng-change="changeEvent()">
-             <option ng-repeat="option in donationNotices" value="{{option}}">{{option}}</option>
-             </select></td>
-         </tr></table>
+         <td><select ng-model="currentNotice" ng-change="changeNotice()">
+             <option ng-repeat="notice in donationNotices" value="{{notice}}">{{notice}}</option>
+             </select></td></tr>
+      </table><br><br>
 
-         <div class='donation_posting' style="width:720px;height:200px;
-            color:{{donationEvent.color}};
-            padding-left: {{donationEvent.textLeft}};
-            padding-top:  {{donationEvent.textTop}};
-            background-image: url('{{donationEvent.image}}'">
-         {{donationEvent.header}}<br><br>
-         {{donationEvent.line_1}}<br>
-         {{donationEvent.line_2}}<br>
-         {{donationEvent.line_3}}<br><br>
-         {{donationEvent.greeting}}<br>
-         {{donationEvent.author}}
+      <div ng-switch="eventMode">
+         <div ng-switch-when="Create">
+            <label class='mode'>Create new event:
+            <input type='text', ng-model='donationEvent.name'
+                                ng-change='textChanged()' 
+                              placeholder='event name' size=20></label>
+            <button ng-model="button" ng-click="eventAdd()">Create new event notice</button>
+            <label class='status_message0'>{{statusMessage0}}</label>
          </div>
-      </div>   
-   </div>
-
-   <div class='container'>
-
-   <div ng-switch="mode" class="container">
-      <div ng-switch-when="Create">
-         <label class='mode'>Create new event:
-         <input type='text', ng-model='donationEvent.name'
-                             ng-change='textChanged()' 
-                           placeholder='event name' size=20></label>
-         <button ng-model="button" ng-click="add()">Create new one</button>
-         <label class='status_message0'>{{statusMessage0}}</label>
+         <div ng-switch-when="Edit">
+            <label class='mode'>Edit existing event: {{currentNotice}}</label>
+            <button ng-model="button" ng-click="eventUpdate()">Submit changes of event notice</button>
+            <label class='status_message1'>{{statusMessage1}}</label>
+         </div>
       </div>
-      <div ng-switch-when="Edit">
-         <label class='mode'>Edit exist event: {{currentNotice}}</label>
-         <button ng-model="button" ng-click="update()">Submit changes</button>
-         <label class='status_message1'>{{statusMessage1}}</label>
-      </div>
-   </div>
 
-   <table>
-   <tr>
-      <td><label><B>Text color:</B></label></td>
-      <td>
-      <select ng-model="currentColor"  ng-change="getColor()">
-         <option ng-repeat="color in colors" value="{{color.value}}">{{color.name}}</option>
-      </select>
-      </td>
-      <td align=right><label><B>from Left:</B></label></td>
-      <td><input type='text', ng-model='donationEvent.textLeft'
-                           placeholder='???px' size=10></td>
-      <td align=right><label><B>from Top:</B></label></td>
-      <td><input type='text', ng-model='donationEvent.textTop'
-                           placeholder='???px' size=10></td>
-   </tr>
-   <tr>
-      <td><label><B>Line 1:</B></label></td>
-      <td colspan=6><input type='text', ng-model='donationEvent.line_1'
-                                        ng-change='textChanged()'
-                           placeholder='line 1' size=60></td>
-      <td align=right><label><B>Header:</B></label></td>
-      <td><input type='text', ng-model='donationEvent.header'
-                              ng-change='textChanged()'
-                           placeholder='header' size=20></td>
-   </tr>
-   <tr>
-      <td><label><B>Line 2:</B></label></td>
-      <td colspan=6><input type='text', ng-model='donationEvent.line_2'
-                                        ng-change='textChanged()'
-                           placeholder='line 2' size=60></td>
-      <td align=right><label><B>Greeting:</B></label></td>
-      <td><input type='text', ng-model='donationEvent.greeting'
-                              ng-change='textChanged()'
-                           placeholder='greeting' size=20></td>
-   </tr>
-   <tr>
-      <td><label><B>Line 3:</B></label></td>
-      <td colspan=6><input type='text', ng-model='donationEvent.line_3'
-                                        ng-change='textChanged()'
-                           placeholder='line 3' size=60></td>
-      <td align=right><label><B>Author:</B></label></td>
-      <td><input type='text', ng-model='donationEvent.author'
-                              ng-change='textChanged()'
-                           placeholder='author' size=20></td>
-   </tr>
-   </table>
+      <lable><strong>Please create letter for parents</strong></lable>
+      <textarea class="form-control" rows = 6 cols = 60
+                  placeholder='Description' ng-model='donationEvent.message'
+                  required></textarea>
+   </div>
+   <div ng-show="manageMode != 'event'">
+      <table><tr>
+         <td><label><strong>Manage donation type</strong></label></td>
+         <td><input type='button' value='Create' ng-click='dTypeCreate()'></td>
+         <td><input type='button' value='Edit'   ng-click='dTypeEdit()'  ></td>
+         <td><input type='button' value='Remove' ng-click='dTypeDelete()'></td>
+         <td><b>switch donation type:</b></td>
+         <td><select ng-model="currentDType" ng-change="changeDType()">
+             <option ng-repeat="option in dTypeArray" value="{{option}}">{{option}}</option>
+             </select></td></tr>
+      </table><br><br>
+
+      <div ng-switch="dTypeMode">
+         <div ng-switch-when="Create">
+            <label class='mode'>Create new donation type:
+            <input type='text', ng-model='donationType.name'
+                                ng-change='textChanged()' 
+                              placeholder='donation type name' size=20></label>
+            <button ng-model="button" ng-click="dTypeAdd()">Create new donation type</button>
+            <label class='status_message0'>{{statusMessage0}}</label>
+         </div>
+         <div ng-switch-when="Edit">
+            <label class='mode'>Edit existing donation type: {{currentDType}}</label>
+            <button ng-model="button" ng-click="dTypeUpdate()">Submit changes of donation type</button>
+            <label class='status_message1'>{{statusMessage1}}</label>
+         </div>
+      </div>
+      <input type='checkbox' ng-model='cbValue'> Active donation type? {{cbValue}}
+      <br><br>                       
+      <lable><strong>Please provide inforamtion for donation type</strong></lable>
+      <textarea class="form-control" rows = 4 cols = 60
+                  placeholder='Information' ng-model='donationType.information'
+                  required></textarea>
    </div>
    </div>
 
@@ -120,15 +104,27 @@
       <h4>List donations [{{donations.length}} entries]</h4>
       <table border=1>
          <tr>
-         <th>Donation date</th>
-         <th>First name</th>
-         <th>Last name</th>
-         <th>E-mail</th>
-         <th>Event</th>
-         <th>Type</th>
+         <th ng-click="sortData('created')">
+             Donation date<div ng-class="getSortClass('created')"></div>
+         </th>
+         <th ng-click="sortData('fName')">
+             First name<div ng-class="getSortClass('fName')"></div>
+         </th>
+         <th ng-click="sortData('lName')">
+             Last name<div ng-class="getSortClass('lName')"></div>
+         </th>
+         <th ng-click="sortData('email')">
+             E-mail<div ng-class="getSortClass('email')"></div>
+         </th>
+         <th ng-click="sortData('event')">
+             Event<div ng-class="getSortClass('event')"></div>
+         </th>
+         <th ng-click="sortData('type')">
+             Type<div ng-class="getSortClass('type')"></div>
+         </th>
          <th>Quantity</th>
          <th>Description</th></tr>
-         <tr ng-repeat="donation in donations">
+         <tr ng-repeat="donation in donations | orderBy:sortColumn:reverseSort">
          <td>{{donation.created | date:'M/dd/yyyy'}}
          <td>{{donation.fName}}</td>
          <td>{{donation.lName}}</td>

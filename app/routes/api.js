@@ -12,12 +12,14 @@ var User       = require('../models/user');
 var ApplicationForm   = require('../models/applicationForm');
 var Donation        = require('../models/donation');
 var Event           = require('../models/event');
+var DType           = require('../models/dType');
 var Notification = require('../models/notification');
 
 //REST API(s)
 var applications  = require('./applicationFormAPI');
 var donations    = require('./donationAPI');
 var events       = require('./eventAPI');
+var dTypes       = require('./dTypeAPI');
 var notification = require('./notificationAPI');
 
 // super secret for creating tokens
@@ -199,6 +201,17 @@ module.exports=function(app,express){
 
     app.param('eventId', events.eventByID);
     
+    //dType REST routes
+    app.route('/dTypes')
+       .post(dTypes.create)
+       .get(dTypes.list);
+      
+    app.route('/dTypes/:dTypeId')
+       .get(dTypes.read)
+       .put(dTypes.update)
+       .delete(dTypes.delete);
+
+    app.param('dTypeId', dTypes.dTypeByID);
     
     // api endpoint to get user information
     apiRouter.get('/me', function(req, res) {

@@ -1,33 +1,38 @@
+/**
+ *Created by Lixing Zhao on 05/17/16 
+ */
+
 app.controller('donationCtrl', function($scope, $http, $location, $window, Auth) {
    var self = this;
        self.donationEvent = {
-                     name: 'Chrismas',
+                     name: 'no-event-now',
                      status: 'active',
-                     header: 'Dear Parents',
-                     greeting: 'Thanks',
-                     author: 'Jenny Homer',
-                     line_1: 'At this moment, we do not have any event that requires special',
-                     line_2: 'donation.  However, any donation for general use is highly',
-                     line_3: 'appreciated.',
-                     color: '#000000',
-                     textLeft: '200px',
-                     textTop: '50px',
-                     image: '../images/events/christmasMessage.png',
+                     nessage: ''
                      };
+     
+   $scope.donationEvent = self.donationEvent;
 
-      $scope.donationEvent = self.donationEvent;
+   $scope.currentType = 'Money';
+   $scope.donationTypes = ['Money'];
 
-      $scope.currentType = 'Money';
-      $scope.donationTypes = ['Money', 'Food', 'Supplies', 'Others'];
+   $scope.currentEvent = '';
+   $scope.donationEvents = [];
 
-      $scope.currentEvent = '';
-      $scope.donationEvents = [];
+   $scope.donations = [];
+   $scope.dTypes = [];
+   $scope.events = [];
+   $scope.newDonations = {};
 
-      $scope.donations = [];
-      $scope.events = [];
-      $scope.newDonations = {};
+    // this function call provide the information text to the template (HTML page)
+   $scope.getDonationInfo = function() {
+      for (var i = 0; i < $scope.dTypes.length; i++) {
+         if ($scope.dTypes[i].name == $scope.currentType) {
+            return $scope.dTypes[i].information;
+         }
+      }
+   };
 
-    //get info if a persion is logged in
+   //get info if a persion is logged in
       if (Auth.isLoggedIn()) {
          Auth.getUser()
             .then(function(data) {
@@ -71,7 +76,26 @@ app.controller('donationCtrl', function($scope, $http, $location, $window, Auth)
          });
       };
 
+   // fetch all donation types from the DB. creates data for dType dropdown control
+   // handle the case when there has no entry in the DB 
+   var fetchDTypes = function() {
+      return $http.get('/dTypes').then(
+      function(response) {
+         $scope.dTypes = response.data;
+         if ($scope.dTypes.length != 0) {
+            for (var i = 0; i < $scope.dTypes.length; i++) {
+               if ($scope.dTypes[i].status == 'active') {
+                  $scope.donationTypes.push($scope.dTypes[i].name);
+               }
+            }
+         }
+      }, function(errResponse) {
+            console.error('Error while fetching donation types');
+         });
+      };
+
    fetchDonations();
+   fetchDTypes();
    fetchEvents();
 
    $scope.switchEvent = function() {
@@ -100,4 +124,13 @@ app.controller('donationCtrl', function($scope, $http, $location, $window, Auth)
            $scope.newDonations = {};
          });
    };
+
+    $scope.getEventMessage = function() {
+        var message = $scope.donationEvent['message'];
+        if (typeof(message) != 'undefined') {
+           return message.replace('/\n','<br/>');
+        }
+    };
+      
+
 });

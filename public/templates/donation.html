@@ -3,23 +3,21 @@
     
         <h2 class="text-center" id="donation-title"><strong>Donation Notice</strong></h2>
 
-       <div class='donation_posting' style="width:720px;height:300px;
-          
-          padding-left: {{donationEvent.textLeft}};
-          padding-top:  {{donationEvent.textTop}};">
-       {{donationEvent.header}}<br><br>
-       {{donationEvent.line_1}}<br>
-       {{donationEvent.line_2}}<br>
-       {{donationEvent.line_3}}<br><br>
-       {{donationEvent.greeting}}<br>
-       {{donationEvent.author}}
-       </div>
-    </div>
+        <pre>{{getEventMessage()}}</pre>
+     </div>
+    <form name="addForm" ng-submit="add()">
+    <div class="donation_container">
+      <label><B>Donation type:</B></label>
+        <select ng-model="currentType">
+          <option ng-repeat="option in donationTypes" value="{{option}}">{{option}}</option>
+        </select>
 
-   <div id="donate-box">
-      <form name="addForm" ng-submit="add()">
+      <label>for school event: [{{currentEvent}}]</label>
+      <input type="submit" value="Take my donation" ng-disabled="addForm.$invalid" >
+    </div>
+    <div id="donate-box">
         <div ng-switch="currentType">
-           <div ng-switch-when="Money" class="donation_control">
+          <div ng-switch-when="Money" class="donation_control">
             <div class="container">
               <h3 class="text-center first-heading donate-title" >Donate money with unit of tickets</h3>
               <h4 class="ticket-description">One Ticket = $10 USD</h4>
@@ -29,14 +27,12 @@
                ng-model="newDonations.quantity"
                required>
               </div>
-            </div>  
+            </div><!-- end of container --> 
           </div>
-          <div ng-switch-when="Food"  class="donation_control">
+          <div ng-switch-default class="donation_control">
             <div class="container">
-
-              <h4 class="text-center first-heading donate-title">Donate food</h4>
-              We need biscuit, cheese, juice and etc.
-              Please watch the food expiration date. Food will be consumed by your kids.<br>
+              <h4 class="text-center first-heading donate-title">Donate {{currentType}}</h4>
+              {{getDonationInfo()}}<br><br>
               <div class="form-group">
                 <label class="control-label col-sm-2">Quantity:</label>
                 <div class="col-sm-10">
@@ -48,64 +44,20 @@
               </div>
 
               <div class="form-group">
-                <label class="control-label col-sm-2">List foods:</label>
+                <label class="control-label col-sm-2">List items:</label>
                 <div class="col-sm-10">
                   <textarea class="form-control" rows = 3 cols = 80
-                 placeholder="Description"
-                 ng-model="newDonations.description"
-                 required></textarea>
+                  placeholder="Description"
+                  ng-model="newDonations.description"
+                  required></textarea>
                 </div>
               </div> 
             </div><!-- end of container -->
           </div>
-           <div ng-switch-when="Supplies"  class="donation_control">
-              <h4>Donate supplies</h4>
-              We need supplies such as paper plates, plastic utentils for the event.
-              Please list the supplies you want to donate.  They need be kid-safe products.<br>
-              Specify the quantity to donate:
-              <input type="text"
-               placeholder="Quantity"
-               ng-model="newDonations.quantity"
-               required><br>
-              <br>
-              List the supplies:
-              <textarea rows = 3 cols = 80
-               placeholder="Description"
-               ng-model="newDonations.description"
-               required></textarea>
-           </div>
-           <div ng-switch-when="Others"  class="donation_control">
-              <h4>Donate anything you wish</h4>
-              Anything you wish to donate, such as class room decorations,
-              toys or gifts (for kids attend the event).
-              Please detail the items you want to donate.<br>
-              Specify the quantity to donate:
-               <input type="text"
-               placeholder="Quantity"
-               ng-model="newDonations.quantity"
-               required><br>
-              <br>
-              List the donations:
-              <textarea rows = 3 cols = 80
-               placeholder="Description"
-               ng-model="newDonations.description"
-               required></textarea>
-           </div>
         </div>
-        <div class="donation_container">
-          <label><B>Donation type:</B></label>
-          <select ng-model="currentType">
-             <option ng-repeat="option in donationTypes" value="{{option}}">{{option}}</option>
-          </select>
+    </div>
+    </form>
 
-          <label>for school event:</label>
-          <select ng-model="currentEvent" ng-change='switchEvent()'>
-             <option ng-repeat="option in donationEvents" value="{{option}}">{{option}}</option>
-          </select>
-          <input type="submit" value="Take my donation" ng-disabled="addForm.$invalid" >
-        </div>
-      </form>
-   </div>
    <div class="donation_list container">
    <h4>Donations from donor [{{username}}]</h4>
    <table border=1>

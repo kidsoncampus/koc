@@ -1,3 +1,7 @@
+/**
+ *Created by Lixing Zhao on 05/17/16 
+ */
+
 var mongoose = require('mongoose');
 
 // create a schema
