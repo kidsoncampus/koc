@@ -144,6 +144,34 @@ module.exports=function(app,express){
             })
         });
 
+    //app.route('/users/:user_id')
+    //    .get(function(req,res){
+    //        User.findById(req.params.user_id,function(err,user){
+    //            if(err) res.send(err);
+    //            res.json(user);
+    //        });
+    //    })
+    //
+    //    .put(function(req,res){
+    //        User.findById(req.params.user_id,req.body,function(err,user){
+    //            if(err) res.send(err);
+    //
+    //            if(req.body.email) user.email=req.body.email;
+    //            if(req.body.fName) user.fName=req.body.fName;
+    //            if(req.body.lName) user.lName=req.body.lName;
+    //            if(req.body.phone) user.phone=req.body.phone;
+    //            if(req.body.address) user.address=req.body.address;
+    //
+    //            //save the user
+    //            user.save(function(err) {
+    //                if(err) res.send(err);
+    //
+    //                res.json({message:"User's profile is updated!"});
+    //            });
+    //
+    //        })
+    //    })
+
     //applicationForm
     app.route('/waitinglist')
         .post(applications.create);
@@ -168,6 +196,8 @@ module.exports=function(app,express){
     app.route('/adminDashboard')
         .get(applications.list);
 
+    app.route('/emergencyContact')
+        .get(applications.listAll);
 
     //donation REST routes
     app.route('/donations')

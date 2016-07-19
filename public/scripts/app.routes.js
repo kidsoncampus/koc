@@ -22,15 +22,30 @@ angular.module('app.routes',['ngRoute'])
             templateUrl : 'templates/parentDashboard.html',
             controller : 'parentDashCtrl'
         })
+        ////route for editProfile.html
+        //.when ('/editProfile', {
+        //    templateUrl : 'templates/editProfile.html',
+        //    controller : 'editProfileCtrl'
+        //})
         //route for waitinglist.html
         .when ('/waitinglist', {
             templateUrl : 'templates/waitinglist.html',
             controller : 'wListController'
         })
+        //route for page to edit an emergency Contact
+        .when ('/edit/:appliID', {
+            templateUrl : 'templates/editE.html',
+            controller : 'editECtrl'
+        })
         .when ('/adminDashboard', {
             templateUrl : 'templates/adminDashboard.html',
             controller : 'adminCtrl',
             controllerAs:'adminDash'
+        })
+        //route for emergencyContact.html
+        .when ('/emergencyContact', {
+            templateUrl : 'templates/emergencyContact.html',
+            controller : 'emergencyCtrl'
         })
         //route for notificationAdmin.html
         .when ('/notificationAdmin', {

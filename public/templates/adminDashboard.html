@@ -16,9 +16,10 @@
 <div  ng-if="adminDash.loggedIn && userType===-1" class="management_container container">
         <h2>KOC Admin Managment</h2>
           <ul class="nav nav-tabs">
-            <li class="active"><a data-toggle="tab" href="#adminDashboard">Application</a></li>
-            <li><a data-toggle="tab" href="#donationAdmin">Donation</a></li> 
-            <li><a data-toggle="tab" href="#notificationAdmin">Notification</a></li>
+              <li class="active"><a data-toggle="tab" href="#adminDashboard">Application</a></li>
+              <li><a data-toggle="tab" href="#donationAdmin">Donation</a></li>
+              <li><a data-toggle="tab" href="#notificationAdmin">Notification</a></li>
+              <li><a data-toggle="tab" href="#emergencyContact">Emergency Contact</a></li>
           </ul>
           <div class="tab-content">
           <!-- application -->
@@ -104,30 +105,6 @@
 
             </div>
 
-
-            <!-- notification-->
-            <div id="notification" class="tab-pane fade">
-                <div class="col-sm-8 col-sm-offset-2" >
-                    <div class="page-header"><h4>Notification</h4></div>
-                    <form name="notification" novalidate>
-                    <!--subject-->
-                    <div class="form-group" ng-class="{ 'has-error' : userForm.g_name.$invalid && (userForm.g_name.$dirty || submitted)}">
-                        <label class="control-label"> Subject:</label>
-                        <input type="text"  name="g_name" class="form-control" ng-model="user.g_name" placeholder="" ng-required="true">
-                        <label class="control-label" ng-show="userForm.g_name.$error.required && (userForm.g_name.$dirty || submitted)" class="help-block">Subject is required.</label>
-                    </div>
-
-                    <!--message-->
-                    <div class="form-group" ng-class="{ 'has-error' : userForm.g_address.$invalid && (userForm.g_address.$dirty || submitted)}">
-                        <label class="control-label">Message</label>
-                        <textarea placeholder="" rows="3"  name="g_address" class="form-control" ng-model="user.g_address" placeholder="" ng-required="true"></textarea>
-                        <label class="control-label" ng-show="userForm.g_address.$error.required && (userForm.g_address.$dirty || submitted)" class="help-block">content is required.</label>
-                    </div>
-                    <div><button type="submit" class="btn btn-primary" ng-disabled = "notification.$invalid" ng-click="saveUser()">Send</button></div>
-                    </form>
-
-                </div>
-            </div>
 
         </div>
  </div>

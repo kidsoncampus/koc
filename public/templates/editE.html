@@ -1,0 +1,52 @@
+<div class="waiting_list">
+    <div>
+        <form name="userForm" novalidate>
+
+            <!--emergency contact-->
+            <label>Edit Emergency Contact</label>
+
+            <!-- e_FirstName -->
+            <div class="form-group" ng-class="{ 'has-error' : userForm.eFname.$invalid && (userForm.eFname.$dirty)}">
+                <label class="control-label">First Name</label>
+                <input type="text"  name="eFname" class="form-control" ng-model="eFname" placeholder="Enter emergency contactor's First Name" required>
+                <label class="control-label" ng-show="userForm.eFname.$error.required && (userForm.eFname.$dirty)" class="help-block">Emergency Contact FirstName is required.</label>
+            </div>
+
+            <!-- e_LastName -->
+            <div class="form-group" ng-class="{ 'has-error' : userForm.eLname.$invalid && (userForm.eLname.$dirty)}">
+                <label class="control-label">Last Name</label>
+                <input type="text"  name="eLname" class="form-control" ng-model="eLname" placeholder="Enter emergency contactor's Last Name" ng-required="true">
+                <label class="control-label" ng-show="userForm.eLname.$error.required && (userForm.eLname.$dirty)" class="help-block">Emergency Contact LastName is required.</label>
+            </div>
+
+            <!-- e_phone -->
+            <div class="form-group" ng-class="{ 'has-error' : userForm.e_contactno.$invalid  && (userForm.e_contactno.$dirty)}">
+                <label class="control-label">Phone</label>
+                <input type="text" name="e_contactno" class="form-control" ng-model="ePhone" placeholder="Enter phone number" ng-required="true" ng-pattern="myRegex" maxlength="10">
+                <label class="control-label" ng-show="userForm.e_contactno.$error.required && (userForm.e_contactno.$dirty)" class="help-block"> Emergency Contactno is required.</label>
+                <!--<label class="control-label" ng-show="userForm.e_contactno.$error.pattern && (userForm.e_contactno.$dirty)" class="help-block"></label>-->
+            </div>
+
+            <!-- e_email -->
+            <div class="form-group" ng-class="{ 'has-error' : userForm.e_email.$invalid && (userForm.e_email.$dirty)}">
+                <label class="control-label">Email</label>
+                <input type="email" name="e_email" class="form-control" ng-model="eEmail" placeholder="Enter email" ng-required="true">
+                <label class="control-label" ng-show="userForm.e_email.$error.required && (userForm.e_email.$dirty)" class="help-block">Emergency  Email is required.</label>
+            </div>
+
+            <!--e_address-->
+            <div class="form-group" ng-class="{ 'has-error' : userForm.e_address.$invalid && (userForm.e_address.$dirty)}">
+                <label class="control-label">Address</label>
+                <textarea placeholder="" rows="3" name="e_address" class="form-control" ng-model="eAddress" placeholder="" ng-required="true"></textarea>
+                <label class="control-label" ng-show="userForm.e_address.$error.required && (userForm.e_address.$dirty)" class="help-block"> Emergency Address is required.</label>
+            </div>
+
+
+
+            <div>
+                <button type="submit" class="btn btn-primary" ng-click="!userForm.$invalid && saveInfo()">Save</button>
+                <button type="submit" class="btn btn-primary" ng-click="!userForm.$invalid && cancel()">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>

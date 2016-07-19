@@ -1,0 +1,55 @@
+<div class="container">
+    <h2>KOC Admin Managment</h2>
+    <ul class="nav nav-tabs">
+        <li><a data-toggle="tab" href="#adminDashboard">Application</a></li>
+        <li><a data-toggle="tab" href="#donationAdmin">Donation</a></li>
+        <li><a data-toggle="tab" href="#notificationAdmin">Notification</a></li>
+        <li class="active"><a data-toggle="tab" href="#emergencyContact">Emergency Contact</a></li>
+    </ul>
+    <div class="tab-content">
+        <br>
+        <div class="wrap">
+            <div class="searchBar">
+                <input type="text" class="searchTerm" placeholder="Search by keyword" ng-model="test">
+                <button type="submit" class="searchButton"><i class="fa fa-search"></i></button>
+            </div>
+        </div>
+
+        <br>
+        <!-- application -->
+        <div id="application" class="tab-pane fade in active">
+            <div class="container-fluid">
+                <div class="row table-responsive">
+                    <table class="table table-bordered table-striped">
+                        <tr>
+                            <th>Class</th>
+                            <th>Kid FullName</th>
+                            <th>Parent FullName</th>
+                            <th>Phone Number</th>
+                            <th>Email</th>
+                            <th>Address</th>
+                            <th>Operation</th>
+                        </tr>
+                        <tr ng-repeat="info in contactInfo | filter:test">
+                            <td>{{info.program}}</td>
+                            <td>{{info.chFname +" "+info.chLname}}</td>
+                            <td>{{info.eFname +" "+info.eLname}}</td>
+                            <td>{{info.ePhone}}</td>
+                            <td>{{info.eEmail}}</td>
+                            <td>{{info.eAddress}}</td>
+                            <td>
+                                <button class="btn btn-primary btn-xs" ng-click="editE(info._id)">Edit</button>
+                            </td>
+
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+
+
+
+
+        </div>
+</div>
+<br></br>
