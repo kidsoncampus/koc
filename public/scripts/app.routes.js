@@ -23,10 +23,10 @@ angular.module('app.routes',['ngRoute'])
             controller : 'parentDashCtrl'
         })
         ////route for editProfile.html
-        //.when ('/editProfile', {
-        //    templateUrl : 'templates/editProfile.html',
-        //    controller : 'editProfileCtrl'
-        //})
+        .when ('/editUserProfile/:userId', {
+            templateUrl : 'templates/editProfile.html',
+            controller : 'editProfileCtrl'
+        })
         //route for waitinglist.html
         .when ('/waitinglist', {
             templateUrl : 'templates/waitinglist.html',

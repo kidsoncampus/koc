@@ -9,6 +9,7 @@ app.controller('parentDashCtrl',function($scope,$http,$location,Auth){
             .then(function(data) {
                 $scope.username = data.data.fName + " " + data.data.lName;
                 $scope.email=data.data.email;
+                $scope.userId=data.data._id;
                 fetchApplications();
             });
     } else {
@@ -25,6 +26,10 @@ app.controller('parentDashCtrl',function($scope,$http,$location,Auth){
                 console.error('Error while fetching notes');
             });
     };
+
+    $scope.editP=function(userId){
+        $location.path("/editUserProfile/"+userId);
+    } ;
 
     //fetch notifications
    

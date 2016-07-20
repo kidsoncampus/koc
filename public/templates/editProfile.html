@@ -1,0 +1,45 @@
+<br>
+<div id="signupPage">
+    <div id="signupForm">
+        <h1 class="text-center">Edit Profile</h1>
+        <form name="signupForm" novalidate>
+            <div class="form-group" ng-class = "{'has-error has-feedback' : signupForm.fname.$invalid && signupForm.fname.$dirty}">
+                <label class="control-label">Firstname</label>
+                <div>
+                    <input type="text" name="fname" class="form-control" placeholder="Enter your FirstName" ng-model="fName" required>
+                    <span ng-show = "signupForm.fname.$invalid && signupForm.fname.$dirty" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+                    <span ng-show = "(signupForm.fname.$error.required || signupForm.fname.$invalid) && signupForm.fname.$dirty" class="help-block">Firstname is required!</span>
+                </div>
+            </div>
+            <div class="form-group" ng-class = "{'has-error has-feedback' : signupForm.lname.$invalid && signupForm.lname.$dirty}">
+                <label class="control-label">Lastname</label>
+                <div>
+                    <input type="text" name="lname" class="form-control" placeholder="Enter your LastName" ng-model="lName" required>
+                    <span ng-show = "signupForm.lname.$invalid && signupForm.lname.$dirty" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+                    <span ng-show = "(signupForm.lname.$error.required || signupForm.lname.$invalid) && signupForm.lname.$dirty" class="help-block">Lastname is required!</span>
+                </div>
+            </div>
+            <div class="form-group" ng-class = "{'has-error has-feedback' : signupForm.phone.$invalid && signupForm.phone.$dirty}">
+                <label class="control-label">Phone</label>
+                <div>
+                    <input type="text" name="phone" class="form-control" placeholder="Enter your phone number" ng-model="phone" required>
+                    <span ng-show = "signupForm.phone.$invalid && signupForm.phone.$dirty" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+                    <span ng-show = "(signupForm.phone.$error.required || signupForm.phone.$invalid) && signupForm.phone.$dirty" class="help-block">Phone number is required!</span>
+                </div>
+            </div>
+            <div class="form-group" ng-class = "{'has-error has-feedback' : signupForm.address.$invalid && signupForm.address.$dirty}">
+                <label class="control-label">Address</label>
+                <div>
+                    <input type="text" name="address" class="form-control" placeholder="Enter your address" ng-model="address" required>
+                    <span ng-show = "signupForm.address.$invalid && signupForm.address.$dirty" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+                    <span ng-show = "(signupForm.address.$error.required || signupForm.address.$invalid) && signupForm.address.$dirty" class="help-block">Address is required!</span>
+                </div>
+            </div>
+            <div>
+                <button type="submit" name="signupSubmit" class="btn btn-info" ng-disabled = "signupForm.$invalid" ng-click="saveUser()">Save</button>
+                <button type="cancel" name="signupCancel" class="btn btn-default" ng-click="cancel()">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+<br>
